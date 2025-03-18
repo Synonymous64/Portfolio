@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import ThemeToggle from "./ThemeToggle";
-import { cn } from "@/lib/utils";
-import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
+import { cn } from "@/lib/utils";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -45,6 +44,15 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [navLinks]);
 
+  const handleLinkClick = (href) => {
+    setIsMenuOpen(false);
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      setActiveSection(href.substring(1));
+    }
+  };
+
   return (
     <header className={cn("fixed top-0 z-50 w-full transition-all duration-500", scrolled && "bg-background/80 backdrop-blur-lg shadow-lg")}>
       <motion.div
@@ -77,6 +85,10 @@ const Navbar = () => {
                 )}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLinkClick(link.href);
+                }}
               >
                 {link.name}
                 {activeSection === link.href.substring(1) && (
@@ -93,10 +105,8 @@ const Navbar = () => {
 
           <div className="flex md:hidden items-center gap-2">
             <ThemeToggle />
-            <Button
-              variant="ghost"
-              size="icon"
-              className="relative"
+            <button
+              className="relative p-2 rounded-full bg-gradient-to-r from-red-500 via-pink-500 to-purple-500"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -109,13 +119,13 @@ const Navbar = () => {
                   transition={{ duration: 0.2 }}
                 >
                   {isMenuOpen ? (
-                    <X className="h-5 w-5" />
+                    <X className="text-white w-6 h-6" />
                   ) : (
-                    <Menu className="h-5 w-5" />
+                    <Menu className="text-white w-6 h-6" />
                   )}
                 </motion.div>
               </AnimatePresence>
-            </Button>
+            </button>
           </div>
         </div>
       </motion.div>
@@ -123,34 +133,56 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div
-            className="md:hidden"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-          >
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-gradient-to-r backdrop-blur-lg border-t border-border/40">
-              {navLinks.map((link, index) => (
-                <motion.a
-                  key={link.name}
-                  href={link.href}
-                  className={cn(
-                    "block px-3 py-2 rounded-md text-base font-medium",
-                    activeSection === link.href.substring(1)
-                      ? "bg-blue-500/10 text-blue-500"
-                      : "text-gray-500 hover:bg-blue-500/5 hover:text-blue-500"
-                  )}
-                  onClick={() => setIsMenuOpen(false)}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  {link.name}
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
+          <>
+            <motion.div
+              onClick={() => setIsMenuOpen(false)}
+            />
+            <motion.div
+              className="md:hidden"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            >
+              <div className="flex flex-col h-full">
+                {/* CLOSE ICON */}
+                <div className="flex justify-end p-6">
+                  <motion.button
+                    whileHover={{ scale: 1.1, rotate: 90 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  >
+                    <X className="w-6 h-6 text-gray-700 dark:text-gray-200" />
+                  </motion.button>
+                </div>
+
+                {/* MENU ITEMS */}
+                <div className="flex flex-col gap-8 px-8">
+                  {navLinks.map((link, index) => (
+                    <motion.a
+                      key={link.name}
+                      href={link.href}
+                      className={cn(
+                        "block px-3 py-2 rounded-md text-base font-medium",
+                        activeSection === link.href.substring(1)
+                          ? "bg-blue-500/10 text-blue-500"
+                          : "text-gray-500 hover:bg-blue-500/5 hover:text-blue-500"
+                      )}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleLinkClick(link.href);
+                      }}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      {link.name}
+                    </motion.a>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>
