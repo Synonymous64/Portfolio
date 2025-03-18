@@ -1,0 +1,33 @@
+
+{
+  "glyphs": {
+    "P": {"ha": 1389, "x_min": 170, "x_max": 1300, "o": "M 170 0 L 170 1456 L 764 1456 Q 1071 1456 1186 1329 Q 1300 1201 1300 991 Q 1300 781 1186 654 Q 1071 526 764 526 L 361 526 L 361 0 L 170 0 Z M 361 700 L 745 700 Q 950 700 1024 780 Q 1098 860 1098 991 Q 1098 1123 1024 1203 Q 950 1282 745 1282 L 361 1282 L 361 700 Z"},
+    "o": {"ha": 1222, "x_min": 103, "x_max": 1119, "o": "M 103 550 Q 103 733 206 876 Q 309 1019 493 1081 Q 636 1132 804 1081 Q 971 1029 1065 884 Q 1119 799 1119 690 L 1119 396 Q 1119 213 1016 69 Q 913 -74 728 -137 Q 585 -187 417 -136 Q 250 -84 156 61 Q 103 146 103 255 L 103 550 Z M 291 255 Q 291 183 322 129 Q 383 32 496 -4 Q 584 -34 692 0 Q 800 35 866 126 Q 930 216 930 337 L 930 690 Q 930 761 898 816 Q 838 913 724 948 Q 636 979 528 945 Q 420 910 354 819 Q 291 729 291 608 L 291 255 Z"},
+    "r": {"ha": 772, "x_min": 168, "x_max": 772, "o": "M 168 0 L 168 1082 L 352 1082 L 352 866 L 368 866 Q 412 956 489 1019 Q 566 1082 688 1082 Q 748 1082 772 1071 L 772 890 Q 740 902 683 902 Q 542 902 447 816 Q 352 731 352 581 L 352 0 L 168 0 Z"},
+    "t": {"ha": 694, "x_min": 28, "x_max": 663, "o": "M 241 1384 L 413 1384 L 413 1082 L 663 1082 L 663 915 L 413 915 L 413 345 Q 413 267 445 230 Q 477 193 551 193 Q 611 193 669 213 L 669 50 Q 593 16 510 16 Q 366 16 288 94 Q 210 173 210 315 L 210 915 L 28 915 L 28 1082 L 241 1082 L 241 1384 Z"},
+    "f": {"ha": 724, "x_min": 28, "x_max": 724, "o": "M 359 0 L 359 915 L 28 915 L 28 1082 L 359 1082 L 359 1143 Q 359 1295 435 1375 Q 510 1456 653 1456 Q 697 1456 724 1448 L 713 1279 Q 694 1283 663 1283 Q 594 1283 553 1246 Q 512 1209 512 1126 L 512 1082 L 696 1082 L 696 915 L 512 915 L 512 0 L 359 0 Z"},
+    "l": {"ha": 532, "x_min": 166, "x_max": 366, "o": "M 166 0 L 166 1456 L 366 1456 L 366 0 L 166 0 Z"},
+    "i": {"ha": 532, "x_min": 166, "x_max": 366, "o": "M 166 0 L 166 1082 L 366 1082 L 366 0 L 166 0 Z M 166 1298 L 166 1456 L 366 1456 L 366 1298 L 166 1298 Z"}
+  },
+  "familyName": "Inter",
+  "ascender": 1900,
+  "descender": -500,
+  "underlinePosition": -200,
+  "underlineThickness": 50,
+  "boundingBox": {"yMin": -500, "xMin": 0, "yMax": 1900, "xMax": 1300},
+  "resolution": 1000,
+  "original_font_information": {
+    "format": 0,
+    "copyright": "Copyright 2020 The Inter Project Authors (https://github.com/rsms/inter)",
+    "fontFamily": "Inter",
+    "fontSubfamily": "Regular",
+    "uniqueID": "3.19;RSMS;Inter-Regular",
+    "fullName": "Inter Regular",
+    "version": "Version 3.19",
+    "postScriptName": "Inter-Regular",
+    "manufacturer": "The Inter Project Authors",
+    "designer": "Rasmus Andersson"
+  },
+  "cssFontWeight": "normal",
+  "cssFontStyle": "normal"
+}
