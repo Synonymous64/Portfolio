@@ -188,8 +188,10 @@ const Experience = () => {
                     <CardHeader className="pb-2">
                       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
                         <div>
-                          <CardTitle className="text-xl">{exp.title}</CardTitle>
-                          <CardDescription className="text-lg font-medium text-primary">
+                          <CardTitle className="text-xl bg-gradient-to-r from-violet-400 via-purple-400 to-indigo-400 text-transparent bg-clip-text">
+                            {exp.title}
+                          </CardTitle>
+                          <CardDescription className="text-lg font-medium bg-gradient-to-r from-primary/80 to-primary text-transparent bg-clip-text">
                             {exp.company}
                           </CardDescription>
                         </div>
@@ -226,7 +228,7 @@ const Experience = () => {
 
           <div>
             <motion.h3
-              className="text-2xl font-bold mb-8 bg-gradient-to-r from-indigo-400 to-purple-500 text-transparent bg-clip-text"
+              className="text-2xl font-bold mb-8 bg-gradient-to-r from-green-400 to-purple-500 text-transparent bg-clip-text"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -256,8 +258,10 @@ const Experience = () => {
                     />
                     <div className="relative z-10">
                       <CardHeader className="pb-2">
-                        <CardTitle className="text-lg">{edu.degree}</CardTitle>
-                        <CardDescription className="font-medium">
+                        <CardTitle className="text-lg bg-gradient-to-r from-green-400 via-green-400 to-indigo-400 text-transparent bg-clip-text">
+                          {edu.degree}
+                        </CardTitle>
+                        <CardDescription className="font-medium bg-gradient-to-r from-primary/80 to-primary text-transparent bg-clip-text">
                           {edu.institution}
                         </CardDescription>
                       </CardHeader>

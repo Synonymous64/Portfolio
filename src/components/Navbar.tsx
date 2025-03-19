@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "./ThemeToggle";
+import RotatingText from "./ui/fallingText";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,8 +17,9 @@ const Navbar = () => {
     { name: "Skills", href: "#skills" },
     { name: "Projects", href: "#projects" },
     { name: "Experience", href: "#experience" },
-    { name: "Contact", href: "#contact" },
     { name: "Blogs", href: "#blog" },
+    { name: "Gallery", href: "#gallery" },
+    { name: "Contact", href: "#contact" },
   ];
 
   useEffect(() => {
@@ -30,7 +32,10 @@ const Navbar = () => {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          return rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2;
+          return (
+            rect.top <= window.innerHeight / 2 &&
+            rect.bottom >= window.innerHeight / 2
+          );
         }
         return false;
       });
@@ -54,7 +59,12 @@ const Navbar = () => {
   };
 
   return (
-    <header className={cn("fixed top-0 z-50 w-full transition-all duration-500", scrolled && "bg-background/80 backdrop-blur-lg shadow-lg")}>
+    <header
+      className={cn(
+        "fixed top-0 z-50 w-full transition-all duration-500",
+        scrolled && "bg-background/80 backdrop-blur-lg shadow-lg"
+      )}
+    >
       <motion.div
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         initial={{ y: -100 }}
@@ -68,7 +78,18 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              Portfolio
+              <RotatingText
+                texts={["Innovate", "Create", "Inspire!"]}
+                mainClassName="px-2 sm:px-2 md:px-3 bg-gradient-to-r bg-purple-300 from-blue-500 via-purple-500 to-pink-500 text-black overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
+                staggerFrom={"last"}
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                exit={{ y: "-120%" }}
+                staggerDuration={0.025}
+                splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+                transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                rotationInterval={2000}
+              />
             </motion.h1>
           </Link>
 
@@ -134,39 +155,47 @@ const Navbar = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <>
+            {/* Backdrop overlay */}
             <motion.div
+              className="fixed inset-0 bg-background/80 backdrop-blur-sm md:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               onClick={() => setIsMenuOpen(false)}
             />
+            
+            {/* Mobile menu panel */}
             <motion.div
-              className="md:hidden"
+              className="fixed right-0 top-0 h-screen w-[75%] bg-background/80 backdrop-blur-lg border-l border-border/40 md:hidden"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
               <div className="flex flex-col h-full">
-                {/* CLOSE ICON */}
+                {/* Close icon */}
                 <div className="flex justify-end p-6">
                   <motion.button
                     whileHover={{ scale: 1.1, rotate: 90 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    className="text-muted-foreground hover:text-foreground"
                   >
-                    <X className="w-6 h-6 text-gray-700 dark:text-gray-200" />
+                    <X className="w-6 h-6" />
                   </motion.button>
                 </div>
 
-                {/* MENU ITEMS */}
-                <div className="flex flex-col gap-8 px-8">
+                {/* Menu items */}
+                <div className="flex flex-col gap-2 px-4">
                   {navLinks.map((link, index) => (
                     <motion.a
                       key={link.name}
                       href={link.href}
                       className={cn(
-                        "block px-3 py-2 rounded-md text-base font-medium",
+                        "relative block px-3 py-2 rounded-md text-base font-medium transition-colors",
                         activeSection === link.href.substring(1)
-                          ? "bg-blue-500/10 text-blue-500"
-                          : "text-gray-500 hover:bg-blue-500/5 hover:text-blue-500"
+                          ? "text-blue-500"
+                          : "text-gray-500 hover:text-blue-500"
                       )}
                       onClick={(e) => {
                         e.preventDefault();
@@ -177,6 +206,13 @@ const Navbar = () => {
                       transition={{ delay: index * 0.1 }}
                     >
                       {link.name}
+                      {activeSection === link.href.substring(1) && (
+                        <motion.div
+                          className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
+                          layoutId="activeMobileSection"
+                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                        />
+                      )}
                     </motion.a>
                   ))}
                 </div>

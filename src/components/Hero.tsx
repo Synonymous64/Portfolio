@@ -13,13 +13,18 @@ import {
 import CodeScene from "./ui/CodeScene";
 import GradientButton from "./ui/gradientbutton";
 import ProjectButton from "./ui/projectbutton";
+import Tools from "./ui/tools";
+import Skills from "./ui/skillsSlider";
 
 const Hero = () => {
   const socialLinks = [
-    { icon: faGithub, url: "https://github.com" },
-    { icon: faTwitter, url: "https://twitter.com" },
-    { icon: faLinkedin, url: "https://linkedin.com" },
-    { icon: faInstagram, url: "https://instagram.com" },
+    { icon: faGithub, url: "https://github.com/Synonymous64" },
+    { icon: faTwitter, url: "https://x.com/PrajInMetaverse" },
+    {
+      icon: faLinkedin,
+      url: "https://www.linkedin.com/in/prajwal-urkude-8a1b6818b",
+    },
+    { icon: faInstagram, url: "https://www.instagram.com/praj_in_metaverse" },
   ];
 
   return (
@@ -38,6 +43,9 @@ const Hero = () => {
             transition={{ duration: 0.5 }}
           >
             Hello, I'm
+            <span className="inline-block animate-wave origin-[70%_70%]">
+              👋
+            </span>
           </motion.span>
 
           <motion.h1

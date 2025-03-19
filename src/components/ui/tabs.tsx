@@ -1,9 +1,17 @@
-import * as React from "react"
-import * as TabsPrimitive from "@radix-ui/react-tabs"
+"use client";
+import * as React from "react";
+import * as TabsPrimitive from "@radix-ui/react-tabs";
+import {
+  AnimatePresence,
+  Transition,
+  Variant,
+  motion,
+  MotionProps,
+} from "framer-motion";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-const Tabs = TabsPrimitive.Root
+const Tabs = TabsPrimitive.Root;
 
 const TabsList = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.List>,
@@ -17,8 +25,8 @@ const TabsList = React.forwardRef<
     )}
     {...props}
   />
-))
-TabsList.displayName = TabsPrimitive.List.displayName
+));
+TabsList.displayName = TabsPrimitive.List.displayName;
 
 const TabsTrigger = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Trigger>,
@@ -32,8 +40,8 @@ const TabsTrigger = React.forwardRef<
     )}
     {...props}
   />
-))
-TabsTrigger.displayName = TabsPrimitive.Trigger.displayName
+));
+TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
 
 const TabsContent = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Content>,
@@ -47,7 +55,46 @@ const TabsContent = React.forwardRef<
     )}
     {...props}
   />
-))
-TabsContent.displayName = TabsPrimitive.Content.displayName
+));
+TabsContent.displayName = TabsPrimitive.Content.displayName;
 
-export { Tabs, TabsList, TabsTrigger, TabsContent }
+export type TransitionPanelProps = {
+  children: React.ReactNode[];
+  className?: string;
+  transition?: Transition;
+  activeIndex: number;
+  variants?: { enter: Variant; center: Variant; exit: Variant };
+} & MotionProps;
+
+function TransitionPanel({
+  children,
+  className,
+  transition,
+  variants,
+  activeIndex,
+  ...motionProps
+}: TransitionPanelProps) {
+  return (
+    <div className={cn("relative", className)}>
+      <AnimatePresence
+        initial={false}
+        mode="popLayout"
+        custom={motionProps.custom}
+      >
+        <motion.div
+          key={activeIndex}
+          variants={variants}
+          transition={transition}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          {...motionProps}
+        >
+          {children[activeIndex]}
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+}
+
+export { Tabs, TabsList, TabsTrigger, TabsContent, TransitionPanel };
