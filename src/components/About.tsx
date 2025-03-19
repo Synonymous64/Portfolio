@@ -45,34 +45,99 @@ const About = () => {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <div className="relative group overflow-hidden rounded-lg">
-              {/* Ambient gradient background */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-violet-500/20 to-indigo-500/10 mix-blend-overlay"></div>
-              
-              {/* Sparkling border effect */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-lg blur-lg opacity-40 group-hover:opacity-75 animate-gradient-xy transition-opacity duration-500"></div>
-              
-              {/* Shine effect overlay */}
-              <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.2)_50%,transparent_75%)] bg-[length:250%_250%] animate-shine-slow opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              
-              {/* Main image */}
-              <div className="relative rounded-lg overflow-hidden border border-purple-500/10">
-                <img
+            <motion.div 
+              className="relative group overflow-hidden rounded-lg"
+              whileHover={{ scale: 1.02 }}
+              transition={{
+                scale: {
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 25
+                }
+              }}
+            >
+              {/* Animated gradient background */}
+              <motion.div
+                className="absolute inset-0"
+                animate={{
+                  background: [
+                    "linear-gradient(to tr, rgba(124, 58, 237, 0.2), rgba(99, 102, 241, 0.1))",
+                    "linear-gradient(to tr, rgba(139, 92, 246, 0.2), rgba(79, 70, 229, 0.1))",
+                    "linear-gradient(to tr, rgba(167, 139, 250, 0.2), rgba(99, 102, 241, 0.1))",
+                  ],
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  repeatType: "reverse"
+                }}
+              />
+
+              {/* Enhanced border effect */}
+              <motion.div
+                className="absolute -inset-1 rounded-lg opacity-0"
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-lg blur-lg animate-gradient-xy" />
+              </motion.div>
+
+              {/* Main image container */}
+              <motion.div 
+                className="relative rounded-lg overflow-hidden border border-purple-500/10"
+                whileHover="hover"
+              >
+                <motion.img
                   src="/praj.png"
                   alt="About me"
-                  className="w-full h-auto relative rounded-lg transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-auto relative rounded-lg"
+                  variants={{
+                    hover: {
+                      scale: 1.05,
+                      filter: "brightness(1.1)",
+                    }
+                  }}
+                  transition={{
+                    scale: {
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 25
+                    },
+                    filter: {
+                      duration: 0.2
+                    }
+                  }}
                 />
-                
+
+                {/* Animated overlay effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-tr from-purple-600/20 to-blue-600/20 mix-blend-overlay"
+                  variants={{
+                    hover: {
+                      opacity: [0, 0.5, 0],
+                    }
+                  }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    repeatType: "reverse"
+                  }}
+                />
+
                 {/* Bottom gradient fade */}
                 <motion.div
-                  className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background via-background/80 to-transparent h-1/4"
+                  className="absolute bottom-0 left-0 right-0 h-1/4"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                   viewport={{ once: true }}
-                ></motion.div>
-              </div>
-            </div>
+                  style={{
+                    background: "linear-gradient(to top, var(--background) 0%, rgba(var(--background-rgb), 0.8) 50%, transparent 100%)"
+                  }}
+                />
+              </motion.div>
+            </motion.div>
           </motion.div>
 
           <div className="lg:col-span-3 space-y-6">

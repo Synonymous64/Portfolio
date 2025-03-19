@@ -69,7 +69,7 @@ const App = () => {
           <Sonner />
           {cursorLoaded && (
             <Suspense fallback={null}>
-              <CustomCursor />
+              {/* <CustomCursor /> */}
             </Suspense>
           )}
           <BrowserRouter>

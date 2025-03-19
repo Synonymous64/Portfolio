@@ -42,10 +42,11 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            Hello, I'm
+            Hello
             <span className="inline-block animate-wave origin-[70%_70%]">
               👋
             </span>
+            , {}I'm
           </motion.span>
 
           <motion.h1
