@@ -106,7 +106,7 @@ export default function Menu() {
   const [navMenu, setNavMenu] = useState<NavItem[]>([
     { name: 'Home', href: '/#home', isActive: true },
     { name: 'About', href: '/#about', isActive: false },
-    { name: 'Skills', href: '/#skills', isActive: false },
+    { name: 'Skills/Academics', href: '/#skills', isActive: false },
     { name: 'Projects', href: '/#projects', isActive: false },
     { name: 'Experience', href: '/#Experience', isActive: false },
     { name: 'Blogs', href: '/posts', isActive: false },
@@ -201,7 +201,7 @@ export default function Menu() {
             className="hidden lg:flex lg:flex-1 lg:justify-end"
             whileHover={{ scale: 1.02 }}
           >
-            <CustomConnectButton />
+            {/* <CustomConnectButton /> */}
           </motion.div>
         </nav>
 

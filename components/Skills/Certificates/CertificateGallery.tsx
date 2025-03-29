@@ -7,15 +7,15 @@ import certificates from './Certificates';
 
 // Certificate Type Definition
 export interface Certificate {
-    id?: string;
-    title?: string;
-    issuer?: string;
-    description?: string;
-    date?: string;
-    credentialUrl?: string;
-    skills?: string[];
-    badgeUrl?: string;
-  }
+  id?: string;
+  title?: string;
+  issuer?: string;
+  description?: string;
+  date?: string;
+  credentialUrl?: string;
+  skills?: string[];
+  badgeUrl?: string;
+}
 
 // Sample Certificates Data (you can replace with your actual certificates)
 
@@ -147,7 +147,7 @@ const CertificateGallery: React.FC = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-8 text-center text-3xl font-bold text-gray-100"
+          className="mb-8 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-center text-4xl font-bold text-transparent"
         >
           My Certifications
         </motion.h2>

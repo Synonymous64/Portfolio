@@ -17,6 +17,7 @@ import {
 
 import GithubContributions from './GithubContribution';
 import CertificateGallery from './Certificates/CertificateGallery';
+import ResearchPapers from './Research/ResearchPapers';
 
 const toolIcons = {
   HTML: Globe,
@@ -208,6 +209,7 @@ const Skills = () => {
       </div>
       <GithubContributions />
       <CertificateGallery />
+      <ResearchPapers />
     </div>
   );
 };

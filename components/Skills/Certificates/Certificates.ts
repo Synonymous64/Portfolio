@@ -17,7 +17,7 @@ const certificates: Certificate[] = [
     id: 'Forage-KPMG',
     title: 'Data Analytics Consultant Intern',
     issuer: 'Forage',
-    date: 'June 2023',
+    date: 'June 21st, 2023',
     credentialUrl:
       'https://drive.google.com/file/d/115Z0krobee5JBY1d5qiubD4fCXqmw0xy/view',
     skills: [
@@ -30,7 +30,7 @@ const certificates: Certificate[] = [
     id: 'Forage-Deloitte',
     title: 'Deloitte Technology Virtual Programme',
     issuer: 'Forage',
-    date: 'June 2023',
+    date: 'June 22nd, 2023',
     credentialUrl:
       'https://drive.google.com/file/d/1AnP3U-cQM3GNIzcUFdAzMA1Di2-C1EUb/view',
     skills: [
@@ -43,36 +43,70 @@ const certificates: Certificate[] = [
     badgeUrl: '/images/badges/stanford-ml-badge.png',
   },
   {
-    id: 'aws-cloud-practitioner',
-    title: 'AWS Certified Cloud Practitioner',
-    issuer: 'Amazon Web Services',
-    description:
-      'Foundational certification demonstrating cloud expertise and AWS knowledge.',
-    date: 'September 2023',
-    credentialUrl: 'https://www.credly.com/verify/example-credential',
-    skills: [
-      'Cloud Computing',
-      'AWS',
-      'Cloud Infrastructure',
-      'Cloud Security',
-    ],
-    badgeUrl: '/images/badges/aws-cloud-practitioner-badge.png',
+    id: 'Goldman-Sachs',
+    title: 'Goldman Sachs Software Engineering Virtual Programmes',
+    issuer: 'Goldman Sachs',
+    date: 'June 26th, 2023',
+    credentialUrl:
+      'https://drive.google.com/file/d/115Z0krobee5JBY1d5qiubD4fCXqmw0xy/view',
+    skills: ['Crack leaked password database'],
   },
   {
-    id: 'react-typescript',
-    title: 'React and TypeScript Masterclass',
-    issuer: 'Udemy',
-    description:
-      'Advanced course on building scalable applications with React and TypeScript.',
-    date: 'November 2023',
-    credentialUrl: 'https://www.udemy.com/certificate/example-credential',
+    id: 'coursera-cloud',
+    title: 'Introduction to Cloud Computing',
+    issuer: 'Coursera',
+    description: 'Advanced course on building scalable cloud.',
+    date: 'August 9, 2022',
+    credentialUrl:
+      'https://www.coursera.org/account/accomplishments/certificate/X6GB7CYGRAWW',
+  },
+  {
+    id: 'Forage-Deloitte',
+    title: 'Deloitte Technology Virtual Programme',
+    issuer: 'Forage',
+    date: 'June 22nd, 2023',
+    credentialUrl:
+      'https://drive.google.com/file/d/1AnP3U-cQM3GNIzcUFdAzMA1Di2-C1EUb/view',
     skills: [
-      'React',
-      'TypeScript',
-      'State Management',
-      'Performance Optimization',
+      'Coding',
+      'Data Analysis',
+      'Development',
+      'Cyber Security',
+      'Forensic Technology',
     ],
-    badgeUrl: '/images/badges/react-typescript-badge.png',
+    badgeUrl: '/images/badges/stanford-ml-badge.png',
+  },
+  {
+    id: 'Forage-Deloitte',
+    title: 'Deloitte Technology Virtual Programme',
+    issuer: 'Forage',
+    date: 'June 22nd, 2023',
+    credentialUrl:
+      'https://drive.google.com/file/d/1AnP3U-cQM3GNIzcUFdAzMA1Di2-C1EUb/view',
+    skills: [
+      'Coding',
+      'Data Analysis',
+      'Development',
+      'Cyber Security',
+      'Forensic Technology',
+    ],
+    badgeUrl: '/images/badges/stanford-ml-badge.png',
+  },
+  {
+    id: 'Forage-Deloitte',
+    title: 'Deloitte Technology Virtual Programme',
+    issuer: 'Forage',
+    date: 'June 22nd, 2023',
+    credentialUrl:
+      'https://drive.google.com/file/d/1AnP3U-cQM3GNIzcUFdAzMA1Di2-C1EUb/view',
+    skills: [
+      'Coding',
+      'Data Analysis',
+      'Development',
+      'Cyber Security',
+      'Forensic Technology',
+    ],
+    badgeUrl: '/images/badges/stanford-ml-badge.png',
   },
 ];
 
