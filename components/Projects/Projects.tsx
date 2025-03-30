@@ -23,7 +23,15 @@ export const projectsData: Project[] = [
       'Developed a sophisticated trading bot using machine learning algorithms to analyze market patterns and execute automated trades with risk management strategies.',
     date: 'December 2023',
     imageUrl: '/projects/trading-bot.jpg',
-    tags: ['Python', 'TensorFlow', 'AWS', 'Docker', 'Machine Learning', 'Trading', 'Crypto'],
+    tags: [
+      'Python',
+      'TensorFlow',
+      'AWS',
+      'Docker',
+      'Machine Learning',
+      'Trading',
+      'Crypto',
+    ],
     slug: 'ai-powered-trading-bot',
     links: [
       { title: 'Live Demo', url: 'https://trading-bot.demo' },
@@ -168,7 +176,15 @@ export const projectsData: Project[] = [
       'Developed a comprehensive portfolio tracking application that aggregates crypto assets across multiple wallets and exchanges with real-time price updates.',
     date: 'July 2023',
     imageUrl: '/projects/portfolio-tracker.jpg',
-    tags: ['React Native', 'Node.js', 'APIs', 'Mobile', 'Crypto', 'Trading', 'DeFi'],
+    tags: [
+      'React Native',
+      'Node.js',
+      'APIs',
+      'Mobile',
+      'Crypto',
+      'Trading',
+      'DeFi',
+    ],
     slug: 'crypto-portfolio-tracker',
     links: [
       { title: 'Web App', url: 'https://crypto-tracker.app' },
@@ -195,7 +211,7 @@ export const projectsData: Project[] = [
 
 export default function Projects() {
   return (
-    <div id="projects" className="mx-auto mt-56 max-w-7xl px-4 py-16">
+    <div id="projects" className="mx-auto mt-5 max-w-7xl">
       <SectionHeading
         heading="Featured Projects"
         subheading="A collection of my most impactful work in blockchain and web development"
