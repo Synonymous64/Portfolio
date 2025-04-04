@@ -108,7 +108,7 @@ export default function Menu() {
     { name: 'About', href: '/#about', isActive: false },
     { name: 'Skills/Academics', href: '/#skills', isActive: false },
     { name: 'Projects', href: '/#projects', isActive: false },
-    { name: 'Experience', href: '/#Experience', isActive: false },
+    { name: 'Experience', href: '/#experience', isActive: false },
     { name: 'Blogs', href: '/posts', isActive: false },
     { name: 'Gallery', href: '/#gallery', isActive: false },
     { name: 'Contact', href: '/#contact', isActive: false },

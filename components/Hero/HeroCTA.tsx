@@ -25,11 +25,15 @@ export default function HeroCTA() {
     { icon: InstagramLogo, url: 'https://www.instagram.com/praj_in_metaverse' },
     { icon: Leetcode, url: 'https://leetcode.com/u/Synonymous/' },
   ];
+
   return (
     <section
       id="home"
       className="container relative mx-auto -mt-14 flex min-h-[80vh] flex-col justify-center overflow-hidden px-4 py-20 sm:-mt-20"
     >
+      {/* Enhanced background with subtle cosmic effect */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] via-background to-background"></div>
+
       <div className="z-10 flex flex-col items-center justify-between gap-10 md:flex-row">
         <div className="text-center md:w-1/2 md:text-left">
           <motion.span
@@ -46,7 +50,7 @@ export default function HeroCTA() {
           </motion.span>
 
           <motion.h1
-            className="font-display sparkle-item relative mb-4 bg-gradient-to-r from-violet-500 via-purple-500 to-indigo-500 bg-clip-text text-4xl font-bold text-transparent md:text-6xl"
+            className="font-display sparkle-item relative mb-4 bg-gradient-to-r from-violet-600 via-fuchsia-500 to-indigo-600 bg-clip-text text-4xl font-bold text-transparent md:text-6xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -60,7 +64,7 @@ export default function HeroCTA() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <span className="inline-block animate-shimmer bg-gradient-to-r from-indigo-400 via-blue-400 to-cyan-400 bg-[length:200%_auto] bg-clip-text text-transparent">
+            <span className="inline-block animate-shimmer bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 bg-[length:200%_auto] bg-clip-text text-transparent">
               Full Stack Developer
             </span>
           </motion.h2>
@@ -71,12 +75,12 @@ export default function HeroCTA() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <span className="rounded-md bg-gradient-to-r from-violet-500/10 via-purple-500/20 to-indigo-500/10 py-1 backdrop-blur-sm">
+            <span className="rounded-md bg-gradient-to-r from-violet-500/15 via-fuchsia-500/20 to-indigo-500/15 px-2 py-1 backdrop-blur-sm">
               I build{' '}
-              <span className="font-semibold text-violet-500">accessible</span>,{' '}
-              <span className="font-semibold text-purple-500">responsive</span>,
-              and{' '}
-              <span className="font-semibold text-indigo-500">performant</span>{' '}
+              <span className="font-semibold text-violet-400">accessible</span>,{' '}
+              <span className="font-semibold text-fuchsia-400">responsive</span>
+              , and{' '}
+              <span className="font-semibold text-indigo-400">performant</span>{' '}
               web and app applications using modern technologies.
             </span>
           </motion.p>
@@ -87,10 +91,6 @@ export default function HeroCTA() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
           >
-            {/* <a href="#contact" className="font-display">
-              <ProjectButton text={"Get in Touch"} />
-            </a> */}
-
             <a
               href={CV_URL}
               download="Prajwal_Urkude_Resume.pdf"
@@ -119,10 +119,10 @@ export default function HeroCTA() {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-primary/20 bg-background/50 backdrop-blur-sm transition-all hover:border-primary/50 hover:bg-primary/10"
+                className="group flex h-10 w-10 items-center justify-center rounded-full border border-primary/20 bg-background/80 backdrop-blur-sm transition-all hover:border-primary/50 hover:bg-gradient-to-br hover:from-violet-500/20 hover:to-fuchsia-500/20"
                 whileHover={{
                   scale: 1.1,
-                  boxShadow: '0 0 15px rgba(var(--primary-rgb), 0.5)',
+                  boxShadow: '0 0 20px rgba(139, 92, 246, 0.6)',
                 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -133,7 +133,7 @@ export default function HeroCTA() {
                     src={social.icon}
                     alt={`${social.url.split('/').pop()} icon`}
                     fill
-                    className="opacity-70 transition-opacity hover:opacity-100"
+                    className="opacity-70 transition-opacity group-hover:opacity-100"
                   />
                 </div>
               </motion.a>
@@ -148,9 +148,9 @@ export default function HeroCTA() {
           transition={{ duration: 0.7, delay: 0.6 }}
           whileHover={{ scale: 1.05 }}
         >
-          {/* Animated gradient backgrounds */}
-          <div className="animate-pulse-glow absolute inset-0 -rotate-1 transform rounded-3xl bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10"></div>
-          <div className="animate-pulse-glow animation-delay-1000 absolute inset-0 rotate-1 transform rounded-3xl bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-violet-500/10"></div>
+          {/* Enhanced animated gradient backgrounds */}
+          <div className="animate-pulse-glow absolute inset-0 -rotate-1 transform rounded-3xl bg-gradient-to-r from-indigo-600/20 via-fuchsia-500/25 to-purple-600/20"></div>
+          <div className="animate-pulse-glow animation-delay-1000 absolute inset-0 rotate-1 transform rounded-3xl bg-gradient-to-r from-blue-500/20 via-violet-500/25 to-indigo-600/20"></div>
           <div className="absolute inset-0 rounded-3xl backdrop-blur-[2px]"></div>
 
           {/* Moon container with parallax effect */}
@@ -179,6 +179,7 @@ export default function HeroCTA() {
                 ease: 'easeInOut',
               }}
             >
+              {/* Enhanced moon with better glow effect */}
               <Image
                 src={MoonImage}
                 alt="Moon"
@@ -188,15 +189,26 @@ export default function HeroCTA() {
                 sizes="(max-width: 768px) 100vw, 50vw"
                 style={{
                   filter:
-                    'contrast(1.1) brightness(1.05) drop-shadow(0 0 25px rgba(139, 92, 246, 0.4))',
+                    'contrast(1.2) brightness(1.1) drop-shadow(0 0 30px rgba(139, 92, 246, 0.6))',
                   mixBlendMode: 'lighten',
                 }}
               />
+
+              {/* Added subtle cosmic dust particles */}
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-500/5 via-purple-500/5 to-transparent"></div>
             </motion.div>
           </motion.div>
 
-          {/* Particle effect overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/10 backdrop-blur-[1px]"></div>
+          {/* Enhanced particle effect overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/20 backdrop-blur-[1px]"></div>
+
+          {/* Added subtle star elements */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute left-1/4 top-1/4 h-1 w-1 animate-pulse rounded-full bg-white/70"></div>
+            <div className="animation-delay-500 absolute left-2/3 top-1/3 h-[2px] w-[2px] animate-pulse rounded-full bg-white/80"></div>
+            <div className="animation-delay-1000 absolute left-1/3 top-2/3 h-[3px] w-[3px] animate-pulse rounded-full bg-white/90"></div>
+            <div className="animation-delay-1500 absolute left-3/4 top-3/4 h-[2px] w-[2px] animate-pulse rounded-full bg-white/80"></div>
+          </div>
         </motion.div>
       </div>
     </section>

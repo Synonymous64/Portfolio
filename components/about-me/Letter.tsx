@@ -1,13 +1,18 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
-import AquaWolfPFP from '@/public/images/svg/aquawolf-pfp.svg';
 import AboutMeImage from './AboutMeImage';
+import { Dancing_Script } from 'next/font/google'; // Import the font
+
+// Initialize the font
+const dancingScript = Dancing_Script({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+});
 
 export default function Letter() {
   return (
-    <div className="relative px-5 lg:px-0 pb-9">
+    <div className="relative px-5 pb-9 lg:px-0">
       <h2 className="text-transparent">About Me</h2>
       <div className="relative">
         {/* Letter Bottom */}
@@ -19,8 +24,8 @@ export default function Letter() {
           <article className="space-y-4 p-4 font-serif text-base leading-relaxed tracking-wide text-white/90 lg:space-y-5 lg:p-5 lg:px-24 lg:py-14 lg:text-2xl">
             <AboutMeImage />
             <p>
-              Hello there! I&apos;m Prajwal, a passionate Full-Stack Developer from
-              India, currently pursuing my Master&apos;s in Germany.
+              Hello there! I&apos;m Prajwal, a passionate Full-Stack Developer
+              from India, currently pursuing my Master&apos;s in Germany.
             </p>
 
             <p>
@@ -33,9 +38,9 @@ export default function Letter() {
             <p>
               At IT-NETWORKZ Infosystem, I honed my skills as a Salesforce and
               web development intern, laying the foundation for my professional
-              journey. Now, I&apos;m expanding my horizons in Germany while working
-              on innovative projects that push the boundaries of what&apos;s possible
-              in tech.
+              journey. Now, I&apos;m expanding my horizons in Germany while
+              working on innovative projects that push the boundaries of
+              what&apos;s possible in tech.
             </p>
 
             <p>
@@ -50,8 +55,8 @@ export default function Letter() {
               <li>Full-Stack Web and app Developer</li>
               <li>Researcher</li>
               <li>UI/UX Designer</li>
-              <li>AI Tinkerer & Hacker</li>
-              <li>Creative Problem Solver</li>
+              <li>AI & ML Enthusiast</li>
+              <li>Technical Problem Solver</li>
             </ul>
 
             <p>
@@ -63,9 +68,9 @@ export default function Letter() {
             <p>
               As I continue my academic journey in Germany, I&apos;m excited to
               collaborate with fellow developers and contribute to projects that
-              make a difference. Whether it&apos;s discussing emerging technologies,
-              exploring new frameworks, or diving into innovative solutions, I&apos;m
-              always eager to connect and learn.
+              make a difference. Whether it&apos;s discussing emerging
+              technologies, exploring new frameworks, or diving into innovative
+              solutions, I&apos;m always eager to connect and learn.
             </p>
 
             <p>Let&apos;s create something amazing together! 🚀</p>
@@ -76,8 +81,13 @@ export default function Letter() {
               </div>
             </div>
 
-            <div className="mb-10 font-handwriting text-4xl lg:text-6xl">
-              <div className="text-white">Prajwal Urkude</div>
+            {/* Signature with handwritten font */}
+            <div className="mb-10 text-4xl lg:text-6xl">
+              <div
+                className={`text-white ${dancingScript.className} font-bold`}
+              >
+                Prajwal Urkude
+              </div>
             </div>
           </article>
         </div>

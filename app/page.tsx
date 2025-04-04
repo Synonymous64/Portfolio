@@ -9,6 +9,7 @@ import FeaturedBlogs from '@/components/Blog/FeaturedBlogs';
 import { unstable_noStore as noStore } from 'next/cache';
 import Projects from '@/components/Projects/Projects';
 import Skills from '@/components/Skills/Skills';
+import Experience from '@/components/Experience/Experience';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 3600 * 12; // revalidate every 12 hour
@@ -24,6 +25,7 @@ export default function Home() {
       <AboutMe />
       <Skills />
       <Projects />
+      <Experience />
       <SecondQuote />
       <FeaturedBlogs />
       <TheEnd />
