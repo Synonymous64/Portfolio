@@ -1,24 +1,119 @@
+import request, { gql } from 'graphql-request';
+import { GetPostBySlugResponse, GetPostsArgs, GetPostsResponse, PublicationName } from './types';
 
-import { BlogPost } from '@/types/blog';
+const endpoint = process.env.NEXT_PUBLIC_HASHNODE_GQL_ENDPOINT;
+const publicationId = process.env.NEXT_PUBLIC_HASHNODE_PUBLICATION_HOST;
 
-export async function getBlogPosts(): Promise<BlogPost[]> {
-  const query = `
-    query Publication {
-      publication(host: "${process.env.NEXT_PUBLIC_HASHNODE_PUBLICATION_HOST}") {
-        posts(first: 6) {
+export async function getBlogName() {
+  const query = gql`
+    query getBlogName($publicationId: ObjectId!) {
+      publication(id: $publicationId) {
+        title
+        displayTitle
+        favicon
+      }
+    }
+  `;
+
+  const response = await request<PublicationName>(endpoint, query, {
+    publicationId,
+  });
+
+  return {
+    title: response.publication.title,
+    displayTitle: response.publication.displayTitle,
+    favicon: response.publication.favicon,
+  };
+}
+
+export async function getPosts({ first = 9, pageParam = '' }: GetPostsArgs) {
+  const query = gql`
+    query getPosts($publicationId: ObjectId!, $first: Int!, $after: String) {
+      publication(id: $publicationId) {
+        posts(first: $first, after: $after) {
           edges {
             node {
               id
               title
-              brief
+              subtitle
               slug
-              dateAdded
-              coverImage
-              readTime
+              content {
+                text
+              }
+              coverImage {
+                url
+              }
               author {
                 name
                 profilePicture
-                username
+              }
+            }
+            cursor
+          }
+        }
+      }
+    }
+  `;
+
+  const response = await request<GetPostsResponse>(endpoint, query, {
+    publicationId,
+    first,
+    after: pageParam || '', // Ensure we always pass a string
+  });
+
+  return response.publication.posts.edges;
+}
+
+export async function getPost(slug: string) {
+  const query = gql`
+    query getPost($publicationId: ObjectId!, $slug: String!) {
+      publication(id: $publicationId) {
+        post(slug: $slug) {
+          id
+          title
+          subtitle
+          publishedAt
+          content {
+            html
+          }
+          coverImage {
+            url
+          }
+          author {
+            name
+            profilePicture
+          }
+        }
+      }
+    }
+  `;
+
+  const response = await request<GetPostBySlugResponse>(endpoint, query, {
+    publicationId,
+    slug,
+  });
+
+  return response.publication.post;
+}
+
+export async function searchPosts(query: string) {
+  const searchQuery = gql`
+    query SearchPosts($publicationId: ObjectId!, $query: String!) {
+      publication(id: $publicationId) {
+        posts(filter: { query: $query }, first: 10) {
+          edges {
+            node {
+              id
+              title
+              subtitle
+              slug
+              brief
+              coverImage {
+                url
+              }
+              author {
+                name
+                profilePicture
               }
             }
           }
@@ -27,95 +122,45 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
     }
   `;
 
-  try {
-    const response = await fetch(
-      process.env.NEXT_PUBLIC_HASHNODE_GQL_ENDPOINT as string,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ query }),
-      },
-    );
+  const response = await request(endpoint, searchQuery, {
+    publicationId,
+    query,
+  });
 
-    const data = await response.json();
-
-    // Debug the response to see what's actually being returned
-    console.log('Hashnode API Response:', data);
-
-    // Add proper error handling and data validation
-    if (data.errors) {
-      console.error('GraphQL Errors:', data.errors);
-      return [];
-    }
-
-    if (!data.data || !data.data.publication) {
-      console.error('Unexpected response structure:', data);
-      return [];
-    }
-
-    // Make sure posts exist before trying to map them
-    if (!data.data.publication.posts || !data.data.publication.posts.edges) {
-      console.error('No posts found in the response');
-      return [];
-    }
-
-    return data.data.publication.posts.edges.map((edge: any) => edge.node);
-  } catch (error) {
-    console.error('Error fetching blog posts:', error);
-    return [];
-  }
+  return response.publication.posts.edges;
 }
 
-// Alternative implementation using dummy data for testing
-export async function getTestBlogPosts(): Promise<BlogPost[]> {
-  // Return dummy data for testing when the API isn't working
-  return [
-    {
-      id: '1',
-      title: 'Getting Started with Next.js and TypeScript',
-      brief:
-        'A comprehensive guide to setting up your first Next.js project with TypeScript support.',
-      slug: 'getting-started-nextjs-typescript',
-      dateAdded: new Date().toISOString(),
-      coverImage: '/portfolio-main/public/images/jpeg/featured-blogs/blog-aquawolf-logo.png',
-      readTime: 5,
-      author: {
-        name: 'John Doe',
-        profilePicture: '/portfolio-main/public/images/svg/TS-Logo.svg',
-        username: 'johndoe',
-      },
-    },
-    {
-      id: '2',
-      title: 'Mastering Tailwind CSS for Modern Web Development',
-      brief:
-        'Learn how to use Tailwind CSS to create beautiful, responsive designs without writing custom CSS.',
-      slug: 'mastering-tailwind-css',
-      dateAdded: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
-      coverImage: '/portfolio-main/public/images/jpeg/featured-blogs/blog-aquawolf-logo.png',
-      readTime: 8,
-      author: {
-        name: 'Jane Smith',
-        profilePicture: '/portfolio-main/public/images/svg/TS-Logo.svg',
-        username: 'janesmith',
-      },
-    },
-    {
-      id: '3',
-      title: 'Building Interactive UIs with Framer Motion',
-      brief:
-        'Discover how to add beautiful animations to your React applications using Framer Motion.',
-      slug: 'interactive-uis-framer-motion',
-      dateAdded: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
-      coverImage: '/portfolio-main/public/images/jpeg/featured-blogs/blog-aquawolf-logo.png',
-      readTime: 6,
-      author: {
-        name: 'Alex Johnson',
-        profilePicture: '/portfolio-main/public/images/svg/TS-Logo.svg',
-        username: 'alexjohnson',
-      },
-    },
-  ];
+export async function addComment(postId: string, content: string) {
+  const mutation = gql`
+    mutation AddComment($postId: ID!, $content: String!) {
+      createComment(input: { postId: $postId, content: $content }) {
+        comment {
+          id
+          content
+          author {
+            name
+            profilePicture
+          }
+          dateAdded
+        }
+      }
+    }
+  `;
+
+  return await request(endpoint, mutation, { postId, content });
 }
+
+export async function subscribeNewsletter(email: string) {
+  const mutation = gql`
+    mutation SubscribeNewsletter($input: SubscribeToNewsletterInput!) {
+      subscribeToNewsletter(input: $input) {
+        status
+      }
+    }
+  `;
+
+  return await request(endpoint, mutation, {
+    input: { email },
+  });
+}
+
