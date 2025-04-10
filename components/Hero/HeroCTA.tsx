@@ -11,6 +11,7 @@ import { motion } from 'framer-motion';
 import ProjectButton from '../ui/ProjectButton';
 
 import Leetcode from '@/public/images/svg/leetcode.svg';
+import { SparklesText } from '../ui/SparkleText';
 
 const CV_URL = '/portfolio-main/public/Curriculum_vitae_Prajwal_Urkude.pdf';
 
@@ -50,12 +51,12 @@ export default function HeroCTA() {
           </motion.span>
 
           <motion.h1
-            className="font-display sparkle-item relative mb-4 bg-gradient-to-r from-violet-600 via-fuchsia-500 to-indigo-600 bg-clip-text text-4xl font-bold text-transparent md:text-6xl"
+            className="font-display sparkle-item relative mb-4 bg-gradient-to-r from-violet-600 via-fuchsia-500 to-indigo-600 bg-clip-text text-4xl font-bold md:text-6xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Prajwal Urkude
+            <SparklesText>Prajwal Urkude</SparklesText>
           </motion.h1>
 
           <motion.h2
@@ -64,7 +65,7 @@ export default function HeroCTA() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <span className="inline-block animate-shimmer bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 bg-[length:200%_auto] bg-clip-text text-transparent">
+            <span className="inline-block bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 bg-[length:200%_auto] bg-clip-text text-transparent">
               Full Stack Developer
             </span>
           </motion.h2>
@@ -148,12 +149,7 @@ export default function HeroCTA() {
           transition={{ duration: 0.7, delay: 0.6 }}
           whileHover={{ scale: 1.05 }}
         >
-          {/* Enhanced animated gradient backgrounds */}
-          <div className="animate-pulse-glow absolute inset-0 -rotate-1 transform rounded-3xl bg-gradient-to-r from-indigo-600/20 via-fuchsia-500/25 to-purple-600/20"></div>
-          <div className="animate-pulse-glow animation-delay-1000 absolute inset-0 rotate-1 transform rounded-3xl bg-gradient-to-r from-blue-500/20 via-violet-500/25 to-indigo-600/20"></div>
-          <div className="absolute inset-0 rounded-3xl backdrop-blur-[2px]"></div>
-
-          {/* Moon container with parallax effect */}
+          {/* Moon container with improved blending */}
           <motion.div
             className="moon-container relative h-full w-full"
             whileHover={{ scale: 1.05 }}
@@ -179,35 +175,41 @@ export default function HeroCTA() {
                 ease: 'easeInOut',
               }}
             >
-              {/* Enhanced moon with better glow effect */}
-              <Image
-                src={MoonImage}
-                alt="Moon"
-                fill
-                className="object-contain transition-all duration-300"
-                priority
-                sizes="(max-width: 768px) 100vw, 50vw"
-                style={{
-                  filter:
-                    'contrast(1.2) brightness(1.1) drop-shadow(0 0 30px rgba(139, 92, 246, 0.6))',
-                  mixBlendMode: 'lighten',
-                }}
-              />
+              {/* Moon image with improved blending */}
+              <div className="relative h-full w-full">
+                <Image
+                  src={MoonImage}
+                  alt="Moon"
+                  fill
+                  className="object-contain opacity-90 mix-blend-screen transition-all duration-300"
+                  priority
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
 
-              {/* Added subtle cosmic dust particles */}
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-500/5 via-purple-500/5 to-transparent"></div>
+                {/* Ambient glow effect */}
+                <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-violet-500/5 via-fuchsia-500/5 to-indigo-500/5 blur-3xl" />
+              </div>
+
+              {/* Enhanced cosmic particles */}
+              <div className="absolute inset-0">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-violet-500/10 via-transparent to-transparent opacity-70 mix-blend-screen blur-xl" />
+              </div>
             </motion.div>
           </motion.div>
 
-          {/* Enhanced particle effect overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/20 backdrop-blur-[1px]"></div>
-
-          {/* Added subtle star elements */}
+          {/* Animated star field */}
           <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute left-1/4 top-1/4 h-1 w-1 animate-pulse rounded-full bg-white/70"></div>
-            <div className="animation-delay-500 absolute left-2/3 top-1/3 h-[2px] w-[2px] animate-pulse rounded-full bg-white/80"></div>
-            <div className="animation-delay-1000 absolute left-1/3 top-2/3 h-[3px] w-[3px] animate-pulse rounded-full bg-white/90"></div>
-            <div className="animation-delay-1500 absolute left-3/4 top-3/4 h-[2px] w-[2px] animate-pulse rounded-full bg-white/80"></div>
+            {[...Array(20)].map((_, i) => (
+              <div
+                key={i}
+                className={`animate-twinkle absolute h-[2px] w-[2px] rounded-full bg-white/70`}
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 3}s`,
+                }}
+              />
+            ))}
           </div>
         </motion.div>
       </div>

@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { getPosts } from '@/lib/graphql';
 
@@ -17,63 +18,81 @@ export default function PostGrid() {
   return (
     <>
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {data?.pages.map((group) =>
-          group.map(({ node, cursor }) => (
-            <Link
-              key={node.id}
-              href={`/posts/${node.slug}`}
-              className="group flex flex-col overflow-hidden rounded-lg border border-gray-200 transition-all hover:shadow-lg dark:border-gray-800"
-            >
-              <div className="relative h-48 w-full overflow-hidden">
-                {node.coverImage?.url && (
-                  <Image
-                    src={node.coverImage.url}
-                    alt={node.title}
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                )}
-              </div>
-              <div className="flex flex-1 flex-col justify-between p-6">
-                <div>
-                  <h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-gray-100">
-                    {node.title}
-                  </h3>
-                  <p className="line-clamp-3 text-gray-600 dark:text-gray-400">
-                    {node.subtitle || node.content.text.slice(0, 150)}...
-                  </p>
-                </div>
-                <div className="mt-4 flex items-center">
-                  {node.author.profilePicture && (
+        {data?.pages.map((group, pageIndex) =>
+          group.map(({ node }, index) => (
+            <Link key={node.id} href={`/posts/${node.slug}`}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: (pageIndex * group.length + index) * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="group relative cursor-pointer overflow-hidden rounded-2xl bg-white/5 backdrop-blur-lg transition-all duration-300 hover:ring-2 hover:ring-purple-500/50"
+              >
+                {/* Card inner glow effect */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-500/20 via-transparent to-pink-500/20 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                {/* Cover Image */}
+                <div className="relative h-48 overflow-hidden">
+                  {node.coverImage?.url && (
                     <Image
-                      src={node.author.profilePicture}
-                      alt={node.author.name}
-                      width={40}
-                      height={40}
-                      className="rounded-full"
+                      src={node.coverImage.url}
+                      alt={node.title}
+                      fill
+                      className="transform object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   )}
-                  <div className="ml-3">
-                    <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                </div>
+
+                {/* Content */}
+                <div className="relative p-6">
+                  <h3 className="mb-2 text-xl font-semibold text-white transition-colors group-hover:text-purple-400">
+                    {node.title}
+                  </h3>
+                  <p className="mb-4 line-clamp-2 text-gray-300">
+                    {node.subtitle || node.content.text.substring(0, 120) + '...'}
+                  </p>
+
+                  {/* Author info */}
+                  <div className="flex items-center">
+                    {node.author.profilePicture && (
+                      <Image
+                        src={node.author.profilePicture}
+                        alt={node.author.name}
+                        width={32}
+                        height={32}
+                        className="rounded-full ring-2 ring-purple-500/50"
+                      />
+                    )}
+                    <span className="ml-2 text-sm text-gray-300">
                       {node.author.name}
-                    </p>
+                    </span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </Link>
-          )),
+          ))
         )}
       </div>
+
+      {/* Load More Button */}
       {hasNextPage && (
-        <div className="mt-8 flex justify-center">
-          <button
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+          className="mt-12 text-center"
+        >
+          <motion.button
             onClick={() => fetchNextPage()}
             disabled={isFetching}
-            className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:bg-blue-400"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-3 font-semibold text-white shadow-lg transition-all hover:shadow-purple-500/25 disabled:opacity-50"
           >
-            {isFetching ? 'Loading...' : 'Load More'}
-          </button>
-        </div>
+            {isFetching ? 'Loading...' : 'Load More Posts'}
+          </motion.button>
+        </motion.div>
       )}
     </>
   );

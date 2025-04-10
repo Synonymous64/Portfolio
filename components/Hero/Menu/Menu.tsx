@@ -10,6 +10,7 @@ import {
   useTransform,
 } from 'framer-motion';
 import Image from 'next/image';
+import { usePathname, useRouter } from 'next/navigation';
 import SVGGradientBg from '../SVGGradientBg';
 import GithubLogo from '../../../public/images/svg/Github-Logo.svg';
 import InstagramLogo from '../../../public/images/svg/Instagram-Logo.svg';
@@ -30,7 +31,14 @@ interface NavItem {
   isActive: boolean;
 }
 
-const NavLink = ({ href, children, isActive, onClick }: any) => {
+interface NavLinkProps {
+  href: string;
+  children: React.ReactNode;
+  isActive: boolean;
+  onClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+}
+
+const NavLink = ({ href, children, isActive, onClick }: NavLinkProps) => {
   return (
     <motion.a
       href={href}
@@ -74,9 +82,13 @@ const CustomConnectButton = () => {
 const useActiveSection = (
   sections: NavItem[],
   setActiveNavItem: (name: string) => void,
+  pathname: string,
   offset: number = 100,
 ) => {
   useEffect(() => {
+    // If we're not on the homepage, don't try to track section scrolling
+    if (pathname !== '/') return;
+
     const handleScroll = () => {
       const pageYOffset = window.pageYOffset;
       let newActiveSection = sections[0].name;
@@ -98,21 +110,37 @@ const useActiveSection = (
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [sections, setActiveNavItem, offset]);
+  }, [sections, setActiveNavItem, offset, pathname]);
 };
 
 export default function Menu() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [navMenu, setNavMenu] = useState<NavItem[]>([
-    { name: 'Home', href: '/#home', isActive: true },
-    { name: 'About', href: '/#about', isActive: false },
-    { name: 'Skills/Academics', href: '/#skills', isActive: false },
-    { name: 'Projects', href: '/#projects', isActive: false },
-    { name: 'Experience', href: '/#experience', isActive: false },
-    { name: 'Blogs', href: '/posts', isActive: false },
-    { name: 'Gallery', href: '/#gallery', isActive: false },
-    { name: 'Contact', href: '/#contact', isActive: false },
-  ]);
+  const pathname = usePathname();
+  const router = useRouter();
+
+  // Initialize navMenu with current page active
+  const [navMenu, setNavMenu] = useState<NavItem[]>(() => {
+    const items = [
+      { name: 'Home', href: '/#home', isActive: false },
+      { name: 'About', href: '/#about', isActive: false },
+      { name: 'Skills/Academics', href: '/#skills', isActive: false },
+      { name: 'Projects', href: '/#projects', isActive: false },
+      { name: 'Experience', href: '/#experience', isActive: false },
+      { name: 'Blogs', href: '/posts', isActive: false },
+      { name: 'Gallery', href: '/#gallery', isActive: false },
+      { name: 'Contact', href: '/#contact', isActive: false },
+    ];
+
+    // Set active based on current pathname
+    return items.map((item) => ({
+      ...item,
+      isActive:
+        pathname === '/'
+          ? item.name === 'Home'
+          : item.href === pathname ||
+            (pathname.startsWith('/posts') && item.href === '/posts'),
+    }));
+  });
 
   const setActiveNavItem = (selectedName: string) => {
     setNavMenu((prevNavMenu) =>
@@ -123,32 +151,62 @@ export default function Menu() {
     );
   };
 
+  // Update active menu item when pathname changes
+  useEffect(() => {
+    if (pathname === '/') {
+      setActiveNavItem('Home');
+    } else if (pathname === '/posts' || pathname.startsWith('/posts/')) {
+      setActiveNavItem('Blogs');
+    } else {
+      // For other pages, find the matching nav item or default to none
+      const matchingItem = navMenu.find((item) => item.href === pathname);
+      if (matchingItem) {
+        setActiveNavItem(matchingItem.name);
+      }
+    }
+  }, [pathname]);
+
   const { scrollY } = useScroll();
-  const headerBg = useTransform(
+  const headerBgColor = useTransform(
     scrollY,
     [0, 100],
-    ['bg-black/10', 'bg-black/80'],
+    ['rgba(0, 0, 0, 0.1)', 'rgba(0, 0, 0, 0.8)'],
   );
 
-  useActiveSection(navMenu, setActiveNavItem);
+  useActiveSection(navMenu, setActiveNavItem, pathname);
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     name: string,
   ) => {
     e.preventDefault();
-    const href = navMenu.find((item) => item.name === name)?.href;
+    const item = navMenu.find((item) => item.name === name);
+    if (!item) return;
 
-    if (href?.startsWith('/#')) {
+    const href = item.href;
+
+    // Set this nav item as active
+    setActiveNavItem(name);
+
+    // Handle navigation differently based on href type
+    if (href.startsWith('/#') && pathname === '/') {
+      // Same-page hash navigation when already on homepage
       const element = document.getElementById(href.substring(2));
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
-    } else if (href) {
-      window.location.href = href;
+    } else if (href.startsWith('/#') && pathname !== '/') {
+      // Navigate to homepage then to section
+      router.push(`/${href}`);
+    } else {
+      // Standard page navigation
+      router.push(href);
     }
 
-    setActiveNavItem(name);
+    // Close mobile menu if open
+    if (mobileMenuOpen) {
+      setMobileMenuOpen(false);
+    }
   };
 
   return (
@@ -161,7 +219,7 @@ export default function Menu() {
       <header className="fixed inset-x-0 top-0 z-50">
         <nav
           className="flex items-center justify-between p-6 backdrop-blur-sm transition-all duration-300 lg:px-8"
-          style={{ background: headerBg }}
+          style={{ backgroundColor: headerBgColor as any }}
         >
           <motion.div className="flex lg:flex-1" whileHover={{ scale: 1.02 }}>
             <Link className="flex items-center gap-2" href="/">
@@ -189,7 +247,9 @@ export default function Menu() {
                 key={item.name}
                 href={item.href}
                 isActive={item.isActive}
-                onClick={(e) => handleNavClick(e, item.name)}
+                onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
+                  handleNavClick(e, item.name)
+                }
               >
                 {item.name}
               </NavLink>
@@ -256,7 +316,7 @@ export default function Menu() {
                             <a
                               key={item.name + 1}
                               href={item.href}
-                              onClick={() => setMobileMenuOpen(false)}
+                              onClick={(e) => handleNavClick(e, item.name)}
                               className="-mx-3 block rounded-lg px-3 py-2 text-3xl font-normal leading-7 text-white transition-all hover:bg-gray-50/20"
                             >
                               {item.name}
