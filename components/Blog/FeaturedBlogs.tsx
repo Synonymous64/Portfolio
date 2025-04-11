@@ -148,7 +148,7 @@ const FeaturedBlogs = () => {
               whileTap={{ scale: 0.95 }}
               className="rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-3 font-semibold text-white shadow-lg transition-all hover:shadow-purple-500/25"
             >
-              View All Posts
+              View All Blogs
             </motion.button>
           </Link>
         </motion.div>

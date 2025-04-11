@@ -8,6 +8,7 @@ import BackButton from '@/components/BackButton';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { IoArrowUp } from 'react-icons/io5';
+import NewsletterForm from '@/components/NewsletterForm';
 
 export default function PostPage({ params }: { params: { slug: string } }) {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -119,6 +120,8 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           className="prose prose-lg mx-auto prose-headings:text-gray-200 prose-p:text-gray-300 prose-a:text-purple-400 prose-blockquote:text-gray-300 prose-strong:text-gray-200 prose-code:text-purple-300"
           dangerouslySetInnerHTML={{ __html: post.content.html }}
         />
+
+        <NewsletterForm />
       </motion.article>
 
       {/* Scroll to top button */}

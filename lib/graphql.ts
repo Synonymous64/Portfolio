@@ -1,5 +1,5 @@
 import request, { gql } from 'graphql-request';
-import { GetPostBySlugResponse, GetPostsArgs, GetPostsResponse, PublicationName } from './types';
+import { GetPostBySlugResponse, GetPostsArgs, GetPostsResponse, PublicationName, SubscribeToNewsletterResponse } from './types';
 
 const endpoint = process.env.NEXT_PUBLIC_HASHNODE_GQL_ENDPOINT;
 const publicationId = process.env.NEXT_PUBLIC_HASHNODE_PUBLICATION_HOST;
@@ -150,17 +150,58 @@ export async function addComment(postId: string, content: string) {
   return await request(endpoint, mutation, { postId, content });
 }
 
-export async function subscribeNewsletter(email: string) {
+export async function subscribeToNewsletter(email: string) {
   const mutation = gql`
-    mutation SubscribeNewsletter($input: SubscribeToNewsletterInput!) {
-      subscribeToNewsletter(input: $input) {
+    mutation subscribeToNewsletter($publicationId: ObjectId!, $email: String!) {
+      subscribeToNewsletter(
+        input: { email: $email, publicationId: $publicationId }
+      ) {
         status
       }
     }
   `;
 
-  return await request(endpoint, mutation, {
-    input: { email },
-  });
+  const response = await request<SubscribeToNewsletterResponse>(
+    endpoint,
+    mutation,
+    {
+      publicationId,
+      email,
+    }
+  );
+
+  return response;
 }
+
+export async function getPostBySlug(slug: string) {
+  const query = gql`
+    query getPostBySlug($publicationId: ObjectId!, $slug: String!) {
+      publication(id: $publicationId) {
+        post(slug: $slug) {
+          title
+          subtitle
+          coverImage {
+            url
+          }
+          content {
+            html
+          }
+          author {
+            name
+            profilePicture
+          }
+        }
+      }
+    }
+  `;
+
+  const response = await request<GetPostBySlugResponse>(endpoint, query, {
+    publicationId,
+    slug,
+  });
+
+  return response.publication.post;
+}
+
+
 

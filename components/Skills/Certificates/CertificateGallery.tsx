@@ -141,7 +141,7 @@ const CertificateGallery: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative w-full bg-gray-950 py-12">
+    <div className="relative w-full py-12">
       <div className="container mx-auto px-4">
         <motion.h2
           initial={{ opacity: 0, y: -20 }}

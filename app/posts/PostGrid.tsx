@@ -6,14 +6,51 @@ import { motion } from 'framer-motion';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { getPosts } from '@/lib/graphql';
 
+// Add new Skeleton component
+const SkeletonCard = () => (
+  <div className="relative overflow-hidden rounded-2xl bg-white/5 backdrop-blur-lg">
+    <div className="animate-pulse">
+      {/* Skeleton image */}
+      <div className="h-48 bg-gray-700/50" />
+
+      {/* Skeleton content */}
+      <div className="p-6">
+        <div className="mb-2 h-6 w-3/4 rounded bg-gray-700/50" />
+        <div className="mb-4 space-y-2">
+          <div className="h-4 w-full rounded bg-gray-700/50" />
+          <div className="h-4 w-5/6 rounded bg-gray-700/50" />
+        </div>
+
+        {/* Skeleton author */}
+        <div className="flex items-center">
+          <div className="h-8 w-8 rounded-full bg-gray-700/50" />
+          <div className="ml-2 h-4 w-24 rounded bg-gray-700/50" />
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 export default function PostGrid() {
-  const { data, hasNextPage, fetchNextPage, isFetching } = useInfiniteQuery({
-    queryKey: ['posts'],
-    queryFn: getPosts,
-    getNextPageParam: (lastPage) =>
-      lastPage.length < 9 ? undefined : lastPage[lastPage.length - 1].cursor,
-    initialPageParam: '',
-  });
+  const { data, hasNextPage, fetchNextPage, isFetching, isLoading } =
+    useInfiniteQuery({
+      queryKey: ['posts'],
+      queryFn: getPosts,
+      getNextPageParam: (lastPage) =>
+        lastPage.length < 9 ? undefined : lastPage[lastPage.length - 1].cursor,
+      initialPageParam: '',
+    });
+
+  // Show skeleton loader while initial data is loading
+  if (isLoading) {
+    return (
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {[...Array(6)].map((_, index) => (
+          <SkeletonCard key={index} />
+        ))}
+      </div>
+    );
+  }
 
   return (
     <>
@@ -50,7 +87,8 @@ export default function PostGrid() {
                     {node.title}
                   </h3>
                   <p className="mb-4 line-clamp-2 text-gray-300">
-                    {node.subtitle || node.content.text.substring(0, 120) + '...'}
+                    {node.subtitle ||
+                      node.content.text.substring(0, 120) + '...'}
                   </p>
 
                   {/* Author info */}
@@ -71,7 +109,7 @@ export default function PostGrid() {
                 </div>
               </motion.div>
             </Link>
-          ))
+          )),
         )}
       </div>
 

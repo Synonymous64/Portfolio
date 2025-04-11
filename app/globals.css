@@ -428,3 +428,15 @@ html {
     }
   }
 }
+
+body.modal-open {
+  overflow: hidden;
+  padding-right: var(--scrollbar-width, 0px); /* Prevents layout shift */
+}
+
+@media (max-width: 640px) {
+  .fixed {
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+  }
+}

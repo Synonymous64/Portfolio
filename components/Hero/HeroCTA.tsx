@@ -6,6 +6,7 @@ import InstagramLogo from '@/public/images/svg/Instagram-Logo.svg';
 import LinkedinLogo from '@/public/images/svg/LinkedIn-Logo.svg';
 import TwitterLogo from '@/public/images/svg/X-Twitter-Logo.svg';
 import MoonImage from '@/public/images/png/moon.png';
+import Sample from '@/public/images/png/sample.png';
 
 import { motion } from 'framer-motion';
 import ProjectButton from '../ui/ProjectButton';

@@ -4,8 +4,10 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import PostGrid from './PostGrid';
 
+
 export default function Posts() {
   const [scrollY, setScrollY] = useState(0);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +17,9 @@ export default function Posts() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+
+
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -161,6 +166,7 @@ export default function Posts() {
           />
         </div>
       </motion.div>
+
     </div>
   );
 }
