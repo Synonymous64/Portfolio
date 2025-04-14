@@ -127,7 +127,7 @@ export default function Menu() {
       { name: 'Projects', href: '/#projects', isActive: false },
       { name: 'Experience', href: '/#experience', isActive: false },
       { name: 'Blogs', href: '/posts', isActive: false },
-      { name: 'Gallery', href: '/#gallery', isActive: false },
+      { name: 'Gallery', href: '/gallery', isActive: false },
       { name: 'Contact', href: '/#contact', isActive: false },
     ];
 

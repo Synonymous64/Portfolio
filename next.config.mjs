@@ -17,7 +17,15 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "cdn.hashnode.com",
-      }
+      },
+      {
+        protocol: 'https',
+        hostname: 'drive.google.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
+      },
     ],
   },
 };
