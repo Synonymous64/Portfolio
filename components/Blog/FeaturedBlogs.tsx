@@ -27,7 +27,7 @@ const FeaturedBlogs = () => {
   }, []);
 
   return (
-    <section className="relative overflow-hidden py-20">
+    <section className="relative overflow-hidden py-20 featured-blogs-section">
       {/* Animated background elements */}
       <div className="absolute inset-0">
         <motion.div

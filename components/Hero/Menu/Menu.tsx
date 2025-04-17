@@ -94,12 +94,31 @@ const useActiveSection = (
       let newActiveSection = sections[0].name;
 
       sections.forEach(({ name, href }) => {
+        // Check for both hash-based sections and featured sections
         if (href.startsWith('/#')) {
-          const element = document.getElementById(href.substring(2));
+          const sectionId = href.substring(2);
+          const element = document.getElementById(sectionId);
           if (element) {
             const sectionTop = element.offsetTop - offset;
             if (pageYOffset >= sectionTop) {
               newActiveSection = name;
+            }
+          }
+        } else {
+          // Check for featured sections
+          const sectionClass = name.toLowerCase() === 'blogs' 
+            ? 'featured-blogs-section' 
+            : name.toLowerCase() === 'gallery' 
+              ? 'featured-gallery-section' 
+              : null;
+              
+          if (sectionClass) {
+            const element = document.querySelector(`.${sectionClass}`);
+            if (element) {
+              const sectionTop = element.getBoundingClientRect().top + window.pageYOffset - offset;
+              if (pageYOffset >= sectionTop) {
+                newActiveSection = name;
+              }
             }
           }
         }

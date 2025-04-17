@@ -128,14 +128,14 @@ const Experience: React.FC = () => {
   return (
     <div
       id="experience"
-      className="relative min-h-screen bg-gradient-to-br from-gray-900 via-indigo-950 to-violet-950 px-4 py-16 text-white md:px-8"
+      className="relative min-h-screen bg-gradient-to-br  md:px-8"
     >
       {/* Enhanced background with multiple gradient blobs */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="animate-blob absolute left-1/4 top-0 h-96 w-96 rounded-full bg-purple-600 opacity-20 mix-blend-multiply blur-[128px] filter"></div>
         <div className="animate-blob animation-delay-2000 absolute right-1/4 top-1/3 h-96 w-96 rounded-full bg-blue-600 opacity-20 mix-blend-multiply blur-[128px] filter"></div>
         <div className="animate-blob animation-delay-4000 absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-violet-600 opacity-20 mix-blend-multiply blur-[128px] filter"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-black/20 via-black/60 to-black/80"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] "></div>
       </div>
 
       <div className="relative z-10 mx-auto max-w-6xl">

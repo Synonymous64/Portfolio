@@ -10,6 +10,8 @@ import Projects from '@/components/Projects/Projects';
 import Skills from '@/components/Skills/Skills';
 import Experience from '@/components/Experience/Experience';
 import FeaturedBlogs from '@/components/Blog/FeaturedBlogs';
+import FeaturedGallery from '@/components/Gallery/FeaturedGallery';
+import Contact from '@/components/Contact/Contact';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 3600 * 12; // revalidate every 12 hour
@@ -28,6 +30,8 @@ export default function Home() {
       <Experience />
       <SecondQuote />
       <FeaturedBlogs />
+      <FeaturedGallery />
+      <Contact />
       <TheEnd />
       <Footer />
     </main>
