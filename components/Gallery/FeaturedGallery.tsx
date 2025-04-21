@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -30,8 +30,165 @@ const featuredItems = [
   },
 ];
 
+// Add ImageModalProps interface
+interface ImageModalProps {
+  item: typeof featuredItems[0];
+  onClose: () => void;
+  onNext: () => void;
+  onPrevious: () => void;
+  hasNext: boolean;
+  hasPrevious: boolean;
+}
+
+// Add ImageModal component
+const ImageModal = ({
+  item,
+  onClose,
+  onNext,
+  onPrevious,
+  hasNext,
+  hasPrevious,
+}: ImageModalProps) => {
+  // Close modal when clicking outside content
+  const handleOutsideClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
+  // Add keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowLeft' && hasPrevious) onPrevious();
+      if (e.key === 'ArrowRight' && hasNext) onNext();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [hasNext, hasPrevious, onClose, onNext, onPrevious]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={handleOutsideClick}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
+    >
+      <motion.div
+        initial={{ scale: 0.95 }}
+        animate={{ scale: 1 }}
+        exit={{ scale: 0.95 }}
+        className="relative mx-auto flex h-[90vh] w-full max-w-6xl flex-col overflow-hidden rounded-xl bg-gray-900 shadow-2xl lg:h-[80vh] lg:flex-row"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Image container */}
+        <div className="relative h-[50vh] w-full lg:h-full lg:w-2/3">
+          <Image
+            src={item.driveUrl}
+            alt={item.title}
+            fill
+            className="object-contain"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw"
+            priority
+          />
+
+          {/* Navigation buttons */}
+          {hasPrevious && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onPrevious();
+              }}
+              className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-3 transition hover:bg-black/70"
+            >
+              <svg
+                className="h-6 w-6 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </button>
+          )}
+
+          {hasNext && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onNext();
+              }}
+              className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-3 transition hover:bg-black/70"
+            >
+              <svg
+                className="h-6 w-6 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+          )}
+        </div>
+
+        {/* Content container */}
+        <div className="flex h-[40vh] flex-col overflow-y-auto p-6 lg:h-full lg:w-1/3">
+          <div className="space-y-4">
+            <h3 className="text-2xl font-bold text-white">{item.title}</h3>
+            <p className="text-gray-300">{item.description}</p>
+            <span className="inline-block rounded-full bg-purple-600/80 px-4 py-2 text-sm text-white backdrop-blur-sm">
+              {item.category}
+            </span>
+          </div>
+
+          <div className="mt-auto pt-4">
+            <button
+              onClick={onClose}
+              className="w-full rounded-full bg-purple-600 px-4 py-2 text-white transition hover:bg-purple-700"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+// Modify the FeaturedGallery component to include modal state and handlers
 const FeaturedGallery = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [selectedItem, setSelectedItem] = useState<typeof featuredItems[0] | null>(null);
+
+  // Modal navigation handlers
+  const currentIndex = selectedItem
+    ? featuredItems.findIndex((item) => item.id === selectedItem.id)
+    : -1;
+
+  const handlePrevious = () => {
+    if (currentIndex > 0) {
+      setSelectedItem(featuredItems[currentIndex - 1]);
+    }
+  };
+
+  const handleNext = () => {
+    if (currentIndex < featuredItems.length - 1) {
+      setSelectedItem(featuredItems[currentIndex + 1]);
+    }
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -50,7 +207,7 @@ const FeaturedGallery = () => {
       y: 0,
       transition: {
         duration: 0.8,
-        ease: 'easeOut', // Changed from cubic-bezier to a valid Framer Motion easing
+        ease: 'easeOut',
       },
     },
   };
@@ -94,7 +251,8 @@ const FeaturedGallery = () => {
               variants={itemVariants}
               onHoverStart={() => setHoveredIndex(index)}
               onHoverEnd={() => setHoveredIndex(null)}
-              className="group relative h-[400px] overflow-hidden rounded-xl bg-gray-900 shadow-2xl"
+              onClick={() => setSelectedItem(item)}
+              className="group relative h-[400px] cursor-pointer overflow-hidden rounded-xl bg-gray-900 shadow-2xl"
             >
               {/* Image */}
               <motion.div
@@ -142,6 +300,20 @@ const FeaturedGallery = () => {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Add the modal */}
+        <AnimatePresence>
+          {selectedItem && (
+            <ImageModal
+              item={selectedItem}
+              onClose={() => setSelectedItem(null)}
+              onNext={handleNext}
+              onPrevious={handlePrevious}
+              hasNext={currentIndex < featuredItems.length - 1}
+              hasPrevious={currentIndex > 0}
+            />
+          )}
+        </AnimatePresence>
 
         {/* CTA Button */}
         <motion.div

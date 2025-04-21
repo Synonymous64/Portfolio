@@ -4,7 +4,7 @@ import { WavyBackgroundDemo } from '@/components/ui/WavyBackgroundDemo';
 import AboutMe from '@/components/about-me/AboutMe';
 import SecondQuote from '@/components/SecondQuote/SecondQuote';
 import TheEnd from '@/components/TheEnd';
-import { Footer } from '@/components/footer';
+import Footer from '@/components/footer'
 import { unstable_noStore as noStore } from 'next/cache';
 import Projects from '@/components/Projects/Projects';
 import Skills from '@/components/Skills/Skills';
@@ -32,7 +32,6 @@ export default function Home() {
       <FeaturedBlogs />
       <FeaturedGallery />
       <Contact />
-      <TheEnd />
       <Footer />
     </main>
   );

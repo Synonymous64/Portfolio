@@ -10,6 +10,8 @@ import Sample from '@/public/images/png/sample.png';
 
 import { motion } from 'framer-motion';
 import ProjectButton from '../ui/ProjectButton';
+import { useEffect, useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 
 import Leetcode from '@/public/images/svg/leetcode.svg';
 import { SparklesText } from '../ui/SparkleText';
@@ -17,6 +19,33 @@ import { SparklesText } from '../ui/SparkleText';
 const CV_URL = '/portfolio-main/public/Curriculum_vitae_Prajwal_Urkude.pdf';
 
 export default function HeroCTA() {
+  const professionalTitles = [
+    'Full Stack Developer',
+    'AI Researcher & Developer',
+    'Web Developer',
+    'App Developer',
+    'UI/UX Designer',
+  ];
+
+  const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    // Title transition timing
+    const visibilityTimer = setInterval(() => {
+      setIsVisible(false);
+
+      setTimeout(() => {
+        setCurrentTitleIndex(
+          (prevIndex) => (prevIndex + 1) % professionalTitles.length,
+        );
+        setIsVisible(true);
+      }, 600); // Wait for exit animation to complete
+    }, 3000); // Change title every 3 seconds
+
+    return () => clearInterval(visibilityTimer);
+  }, []);
+
   const socialLinks = [
     { icon: GithubLogo, url: 'https://github.com/Synonymous64' },
     { icon: TwitterLogo, url: 'https://x.com/PrajInMetaverse' },
@@ -60,16 +89,43 @@ export default function HeroCTA() {
             <SparklesText>Prajwal Urkude</SparklesText>
           </motion.h1>
 
-          <motion.h2
-            className="font-display mb-6 text-2xl font-medium text-muted-foreground md:text-3xl"
+          {/* Title transition section */}
+          <motion.div
+            className="font-display mb-6 h-12 text-2xl font-medium text-muted-foreground md:text-3xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <span className="inline-block bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 bg-[length:200%_auto] bg-clip-text text-transparent">
-              Full Stack Developer
-            </span>
-          </motion.h2>
+            <AnimatePresence mode="wait">
+              {isVisible && (
+                <motion.span
+                  key={currentTitleIndex}
+                  className="inline-block bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 bg-[length:200%_auto] bg-clip-text text-transparent"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    backgroundPosition: ['0% center', '200% center'],
+                  }}
+                  exit={{
+                    opacity: 0,
+                    y: -20,
+                  }}
+                  transition={{
+                    opacity: { duration: 0.5 },
+                    y: { duration: 0.5 },
+                    backgroundPosition: {
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: 'linear',
+                    },
+                  }}
+                >
+                  {professionalTitles[currentTitleIndex]}
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </motion.div>
 
           <motion.p
             className="font-body mx-auto mb-8 max-w-md text-lg md:mx-0"
