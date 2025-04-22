@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
-  FaFacebookF,
   FaTwitter,
   FaInstagram,
   FaLinkedinIn,
@@ -14,12 +13,13 @@ import {
   FaFolder,
   FaBlog,
   FaEnvelope,
-  FaCode,
-  FaMobile,
-  FaPencilRuler,
-  FaChartLine,
-  FaSearch,
+  FaMedium,
+  FaDev,
+  FaCodepen,
+  FaStackOverflow,
 } from 'react-icons/fa';
+// Add this import for Hashnode icon from Simple Icons
+import { SiHashnode } from 'react-icons/si';
 
 const Footer = () => {
   // Animation variants
@@ -71,24 +71,32 @@ const Footer = () => {
   ];
 
   // Services data with icons
-  const services = [
+  const others = [
     {
-      name: 'Web Development',
-      href: '/services/web-development',
-      icon: FaCode,
-    },
-    { name: 'Mobile Apps', href: '/services/mobile-apps', icon: FaMobile },
-    {
-      name: 'UI/UX Design',
-      href: '/services/ui-ux-design',
-      icon: FaPencilRuler,
+      name: 'Medium',
+      href: 'https://medium.com/@prajwalurkude007', // Update with your Medium profile URL
+      icon: FaMedium,
     },
     {
-      name: 'Digital Marketing',
-      href: '/services/digital-marketing',
-      icon: FaChartLine,
+      name: 'Hashnode',
+      href: 'https://hashnode.com/@Knewbyee', // Update with your Hashnode profile URL
+      icon: SiHashnode, // Using SiHashnode instead of FaHashnode
     },
-    { name: 'SEO Optimization', href: '/services/seo', icon: FaSearch },
+    {
+      name: 'Dev.to',
+      href: 'https://dev.to/synonymous64', // Update with your Dev.to profile URL
+      icon: FaDev,
+    },
+    {
+      name: 'CodePen',
+      href: 'https://codepen.io/synonymous64', // Update with your CodePen profile URL
+      icon: FaCodepen,
+    },
+    {
+      name: 'Stack Overflow',
+      href: 'https://stackoverflow.com/users/17541891/prajwal-urkude', // Update with your Stack Overflow profile URL
+      icon: FaStackOverflow,
+    },
   ];
 
   return (
@@ -178,10 +186,10 @@ const Footer = () => {
           <motion.div variants={childVariants} className="space-y-6">
             <h3 className="relative text-xl font-semibold text-white">
               <span className="absolute -left-4 top-1/2 h-8 w-1 -translate-y-1/2 rounded bg-gradient-to-b from-pink-500 to-violet-500"></span>
-              Our Services
+              Other Links
             </h3>
             <ul className="space-y-3">
-              {services.map((service, index) => (
+              {others.map((service, index) => (
                 <motion.li
                   key={index}
                   whileHover={{ x: 5 }}

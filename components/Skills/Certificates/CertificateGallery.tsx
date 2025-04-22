@@ -102,11 +102,15 @@ const CertificateGallery: React.FC = () => {
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
       const container = scrollRef.current;
-      const scrollAmount = container.clientWidth;
+      // Use 90% of container width to match the card width
+      const scrollAmount = container.clientWidth * 0.9;
       const newScrollLeft =
         direction === 'left'
-          ? container.scrollLeft - scrollAmount
-          : container.scrollLeft + scrollAmount;
+          ? Math.max(0, container.scrollLeft - scrollAmount)
+          : Math.min(
+              container.scrollWidth - container.clientWidth,
+              container.scrollLeft + scrollAmount,
+            );
 
       container.scrollTo({
         left: newScrollLeft,
@@ -124,21 +128,23 @@ const CertificateGallery: React.FC = () => {
       const containerWidth = container.clientWidth;
       const scrollWidth = container.scrollWidth;
 
-      // Calculate active index
+      // Calculate active index based on 90% container width
       const newActiveIndex = Math.round(
         scrollPosition / (containerWidth * 0.9),
       );
-      setActiveIndex(newActiveIndex);
+      setActiveIndex(Math.min(newActiveIndex, certificates.length - 1));
 
-      // Check scroll boundaries
-      setIsAtStart(scrollPosition < 10);
-      setIsAtEnd(scrollPosition + containerWidth >= scrollWidth - 10);
+      // Check scroll boundaries with a small threshold
+      setIsAtStart(scrollPosition <= 10);
+      setIsAtEnd(
+        Math.ceil(scrollPosition + containerWidth) >= scrollWidth - 10,
+      );
     };
 
     const currentRef = scrollRef.current;
     currentRef?.addEventListener('scroll', handleScroll);
     return () => currentRef?.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [certificates.length]);
 
   return (
     <div className="relative w-full py-12">

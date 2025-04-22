@@ -76,8 +76,8 @@ export default function HeroCTA() {
             Hello
             <span className="ml-1 inline-block origin-[70%_70%] animate-wave">
               👋
-            </span>{' '}
-            I&apos;m
+            </span>
+            , I&apos;m
           </motion.span>
 
           <motion.h1
@@ -100,12 +100,11 @@ export default function HeroCTA() {
               {isVisible && (
                 <motion.span
                   key={currentTitleIndex}
-                  className="inline-block bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 bg-[length:200%_auto] bg-clip-text text-transparent"
+                  className="inline-block bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{
                     opacity: 1,
                     y: 0,
-                    backgroundPosition: ['0% center', '200% center'],
                   }}
                   exit={{
                     opacity: 0,
@@ -114,11 +113,6 @@ export default function HeroCTA() {
                   transition={{
                     opacity: { duration: 0.5 },
                     y: { duration: 0.5 },
-                    backgroundPosition: {
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: 'linear',
-                    },
                   }}
                 >
                   {professionalTitles[currentTitleIndex]}
@@ -128,16 +122,16 @@ export default function HeroCTA() {
           </motion.div>
 
           <motion.p
-            className="font-body mx-auto mb-8 max-w-md text-lg md:mx-0"
+            className="font-body mx-auto mb-8 max-w-md text-base leading-relaxed sm:text-lg md:mx-0 md:mb-10 md:max-w-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <span className="rounded-md bg-gradient-to-r from-violet-500/15 via-fuchsia-500/20 to-indigo-500/15 px-2 py-1 backdrop-blur-sm">
+            <span className="inline-block rounded-md bg-gradient-to-r from-violet-500/15 via-fuchsia-500/20 to-indigo-500/15 px-3 py-2 md:px-4 md:py-2.5">
               I build{' '}
               <span className="font-semibold text-violet-400">accessible</span>,{' '}
-              <span className="font-semibold text-fuchsia-400">responsive</span>
-              , and{' '}
+              <span className="font-semibold text-fuchsia-400">responsive</span>{' '}
+              and{' '}
               <span className="font-semibold text-indigo-400">performant</span>{' '}
               web and app applications using modern technologies.
             </span>
