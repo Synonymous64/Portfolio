@@ -13,6 +13,7 @@ import {
   FiDatabase,
 } from 'react-icons/fi';
 import Image from 'next/image';
+import PROJECTS from './ProjectData';
 
 // Enhanced project interfaces with categories
 interface Project {
@@ -30,140 +31,6 @@ interface Project {
 }
 
 // Sample data with clear categorization
-const PROJECTS: Project[] = [
-  // Featured Projects (3)
-  {
-    id: 'project1',
-    title: 'AI-Powered Trading Platform',
-    description:
-      'Next-gen trading platform using machine learning to predict market trends with 85% accuracy.',
-    technologies: ['Python', 'TensorFlow', 'Next.js', 'PostgreSQL'],
-    category: 'ai',
-    github: 'https://github.com/yourusername/ai-trading',
-    external: 'https://ai-trading.demo',
-    year: '2024',
-    featured: true,
-    image: '/projects/trading-bot.jpg',
-  },
-  {
-    id: 'project2',
-    title: 'Decentralized Social Network',
-    description:
-      'Web3 social media platform with NFT profiles and decentralized content storage.',
-    technologies: ['Solidity', 'IPFS', 'React', 'Node.js'],
-    category: 'blockchain',
-    github: 'https://github.com/yourusername/decentralized-social',
-    external: 'https://dapp-social.demo',
-    year: '2023',
-    featured: true,
-    image: '/projects/portfolio-tracker.jpg',
-  },
-  {
-    id: 'project3',
-    title: 'Healthcare Management System',
-    description:
-      'Enterprise solution for hospital management with real-time analytics dashboard.',
-    technologies: ['TypeScript', 'NestJS', 'React', 'MongoDB'],
-    category: 'web',
-    github: 'https://github.com/yourusername/healthcare-system',
-    year: '2023',
-    featured: true,
-    image: '/projects/nft-marketplace.jpg',
-  },
-
-  // Other Projects (3)
-  {
-    id: 'project4',
-    title: 'Fitness Tracker Mobile App',
-    description:
-      'Cross-platform mobile app for workout tracking with social features.',
-    technologies: ['React Native', 'Firebase', 'Redux'],
-    category: 'mobile',
-    github: 'https://github.com/yourusername/fitness-tracker',
-    external: 'https://apps.apple.com/fitness-tracker',
-    year: '2023',
-    image: '/projects/fitness-app.jpg',
-  },
-  {
-    id: 'project5',
-    title: 'DevOps Automation Suite',
-    description:
-      'CI/CD pipeline automation with Kubernetes cluster management.',
-    technologies: ['Docker', 'Kubernetes', 'GitHub Actions', 'Terraform'],
-    category: 'devops',
-    github: 'https://github.com/yourusername/devops-suite',
-    year: '2023',
-  },
-  {
-    id: 'project6',
-    title: 'E-commerce Analytics Dashboard',
-    description:
-      'Real-time sales analytics with predictive inventory management.',
-    technologies: ['Next.js', 'D3.js', 'Node.js', 'PostgreSQL'],
-    category: 'web',
-    github: 'https://github.com/yourusername/ecommerce-analytics',
-    year: '2023',
-  },
-
-  // Archived Projects (6)
-  {
-    id: 'project7',
-    title: 'University Portal',
-    description:
-      'Student management system with course registration and grading.',
-    technologies: ['PHP', 'Laravel', 'MySQL', 'Bootstrap'],
-    category: 'web',
-    year: '2022',
-    archived: true,
-  },
-  {
-    id: 'project8',
-    title: 'Restaurant POS System',
-    description:
-      'Point of sale system with inventory management for restaurants.',
-    technologies: ['Java', 'Spring Boot', 'React', 'MySQL'],
-    category: 'web',
-    year: '2022',
-    archived: true,
-  },
-  {
-    id: 'project9',
-    title: 'Weather Prediction Model',
-    description:
-      'ML model for local weather forecasting using historical data.',
-    technologies: ['Python', 'Pandas', 'Scikit-learn', 'Flask'],
-    category: 'ai',
-    year: '2021',
-    archived: true,
-  },
-  {
-    id: 'project10',
-    title: 'Task Management Mobile App',
-    description: 'Todo app with team collaboration features.',
-    technologies: ['Flutter', 'Firebase', 'Bloc'],
-    category: 'mobile',
-    year: '2021',
-    archived: true,
-  },
-  {
-    id: 'project11',
-    title: 'NFT Marketplace',
-    description: 'Early version of an Ethereum-based NFT trading platform.',
-    technologies: ['Solidity', 'Web3.js', 'React'],
-    category: 'blockchain',
-    year: '2021',
-    archived: true,
-  },
-  {
-    id: 'project12',
-    title: 'Portfolio Website',
-    description: 'My first portfolio website built with basic technologies.',
-    technologies: ['HTML', 'CSS', 'JavaScript'],
-    category: 'web',
-    year: '2020',
-    archived: true,
-  },
-];
 
 // Category icons mapping
 const CATEGORY_ICONS = {
@@ -342,51 +209,77 @@ const FeaturedProjectCard: React.FC<{ project: Project; index: number }> = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
     >
-      {/* Project Image */}
+      {/* Project Image Container */}
       <div
-        className={`relative col-span-1 overflow-hidden rounded-xl lg:col-span-7 ${isEven ? 'lg:order-1' : 'lg:order-2'}`}
+        className={`relative col-span-1 overflow-hidden rounded-xl lg:col-span-7 ${
+          isEven ? 'lg:order-1' : 'lg:order-2'
+        }`}
       >
         <a
           href={project.external || project.github || '#'}
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative block h-full"
+          className="perspective-1000 group relative block h-full"
           aria-label={`View ${project.title} project`}
         >
-          <div className="absolute inset-0 z-10 bg-gradient-to-t from-purple-900/70 via-purple-900/30 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-30"></div>
-          <div className="absolute inset-0 z-0 bg-gradient-to-br from-purple-500/10 to-violet-500/10"></div>
+          {/* Enhanced Gradient Overlay */}
+          <div className="absolute inset-0 z-10 bg-gradient-to-t from-purple-900/80 via-purple-900/40 to-transparent opacity-0 transition-all duration-500 ease-out group-hover:opacity-70"></div>
 
+          {/* Ambient Background Effect */}
+          <div className="absolute inset-0 z-0 bg-gradient-to-br from-purple-500/20 to-violet-500/20 transition-opacity duration-300 group-hover:opacity-50"></div>
           {project.image && (
-            <motion.div
-              className="relative h-64 w-full sm:h-80 lg:h-96"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
-                quality={90}
-              />
-            </motion.div>
-          )}
+  <motion.div
+    className="relative w-full overflow-hidden sm:h-auto lg:h-auto"
+    initial={{ scale: 1 }}
+    whileHover={{ scale: 1 }}
+  >
+    <div className="aspect-video relative">
+      <Image
+        src={project.image}
+        alt={project.title}
+        fill
+        className="object-contain transition-all duration-500 ease-out group-hover:scale-105"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
+        quality={95}
+        priority={index < 2}
+      />
 
-          <div className="absolute bottom-0 left-0 z-20 p-6">
-            <span className="inline-flex items-center gap-2 rounded-full bg-purple-600/80 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
+      {/* Overlay effects */}
+      <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 via-purple-900/40 to-transparent opacity-0 transition-all duration-500 ease-out group-hover:opacity-70" />
+
+      {/* Shine effect */}
+      <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.2)_50%,transparent_75%)] opacity-0 transition-opacity duration-700 ease-out group-hover:opacity-100" />
+    </div>
+  </motion.div>
+)}
+
+          {/* Enhanced Project Label */}
+          <motion.div
+            className="absolute bottom-0 left-0 z-20 p-6"
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+          >
+            <span className="inline-flex items-center gap-2 rounded-full bg-purple-600/90 px-4 py-2 text-sm font-medium text-white shadow-lg backdrop-blur-sm transition-all duration-300 group-hover:bg-purple-500/90">
               {CATEGORY_ICONS[project.category]}
               Featured Project
             </span>
-          </div>
+          </motion.div>
         </a>
       </div>
 
-      {/* Project Info */}
+      {/* Project Info with Enhanced Mobile Responsiveness */}
       <div
-        className={`col-span-1 lg:col-span-5 ${isEven ? 'lg:order-2 lg:col-start-8' : 'lg:order-1'}`}
+        className={`col-span-1 lg:col-span-5 ${
+          isEven ? 'lg:order-2 lg:col-start-8' : 'lg:order-1'
+        }`}
       >
-        <div className="relative">
+        <motion.div
+          className="relative"
+          initial={{ opacity: 0, x: isEven ? -20 : 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
           <div className="mb-2 flex items-center gap-2 text-sm text-purple-400">
             {CATEGORY_ICONS[project.category]}
             <span>{project.category.toUpperCase()}</span>
@@ -449,7 +342,7 @@ const FeaturedProjectCard: React.FC<{ project: Project; index: number }> = ({
               </motion.a>
             )}
           </div>
-        </div>
+        </motion.div>
       </div>
     </motion.div>
   );
