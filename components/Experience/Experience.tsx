@@ -1,79 +1,11 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-interface ExperienceItem {
-  id: number;
-  title: string;
-  company: string;
-  period: string;
-  description: string[];
-  skills: string[];
-}
-
-interface EducationItem {
-  id: number;
-  degree: string;
-  institution: string;
-  period: string;
-  description: string;
-}
-
-const experienceData: ExperienceItem[] = [
-  {
-    id: 1,
-    title: 'Senior Frontend Developer',
-    company: 'TechCorp Inc.',
-    period: '2022 - Present',
-    description: [
-      'Led development of responsive web applications using React and TypeScript',
-      'Implemented complex UI animations using Framer Motion',
-      'Mentored junior developers and conducted code reviews',
-    ],
-    skills: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Framer Motion'],
-  },
-  {
-    id: 2,
-    title: 'Frontend Developer',
-    company: 'Digital Solutions LLC',
-    period: '2020 - 2022',
-    description: [
-      'Developed and maintained client websites and web applications',
-      'Collaborated with UX/UI designers to implement responsive designs',
-      'Optimized applications for maximum performance and scalability',
-    ],
-    skills: ['JavaScript', 'React', 'CSS3', 'HTML5', 'Git'],
-  },
-  {
-    id: 3,
-    title: 'Web Developer Intern',
-    company: 'StartUp Vision',
-    period: '2019 - 2020',
-    description: [
-      'Assisted in developing website components using HTML, CSS, and JavaScript',
-      'Participated in agile development processes',
-      'Created and maintained documentation for web projects',
-    ],
-    skills: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
-  },
-];
-
-const educationData: EducationItem[] = [
-  {
-    id: 1,
-    degree: 'Master of Science in Computer Science',
-    institution: 'Tech University',
-    period: '2018 - 2020',
-    description: 'Specialized in Web Development and User Interface Design',
-  },
-  {
-    id: 2,
-    degree: 'Bachelor of Science in Information Technology',
-    institution: 'State University',
-    period: '2014 - 2018',
-    description: 'Graduated with honors, participated in coding competitions',
-  },
-];
+import {
+  educationData,
+  experienceData,
+  ACHIEVEMENT_ICONS,
+} from './ExperienceData';
 
 const Experience: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'experience' | 'education'>(
@@ -128,14 +60,14 @@ const Experience: React.FC = () => {
   return (
     <div
       id="experience"
-      className="relative min-h-screen bg-gradient-to-br  md:px-8"
+      className="relative min-h-screen bg-gradient-to-br md:px-8"
     >
       {/* Enhanced background with multiple gradient blobs */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="animate-blob absolute left-1/4 top-0 h-96 w-96 rounded-full bg-purple-600 opacity-20 mix-blend-multiply blur-[128px] filter"></div>
         <div className="animate-blob animation-delay-2000 absolute right-1/4 top-1/3 h-96 w-96 rounded-full bg-blue-600 opacity-20 mix-blend-multiply blur-[128px] filter"></div>
         <div className="animate-blob animation-delay-4000 absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-violet-600 opacity-20 mix-blend-multiply blur-[128px] filter"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] "></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))]"></div>
       </div>
 
       <div className="relative z-10 mx-auto max-w-6xl">
@@ -408,64 +340,35 @@ const Experience: React.FC = () => {
                         </div>
 
                         {/* Add some decorative achievement badges */}
+                        {/* Achievement section */}
                         <div>
                           <h4 className="mb-3 text-lg font-semibold text-blue-300">
-                            Achievements
+                            {item.achievements?.length ? 'Achievements' : ''}
                           </h4>
                           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                            <motion.div
-                              className="flex items-center rounded-lg border border-violet-600/30 bg-gradient-to-r from-indigo-900/40 via-violet-900/40 to-fuchsia-900/40 p-4 shadow-[0_4px_10px_rgba(139,92,246,0.15)]"
-                              initial={{ opacity: 0, x: -20 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.3 }}
-                            >
-                              <div className="mr-3 rounded-full bg-gradient-to-br from-violet-600 to-fuchsia-600 p-2 shadow-lg">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-6 w-6 text-white"
-                                  fill="none"
-                                  viewBox="0 0 24 24"
-                                  stroke="currentColor"
+                            {item.achievements?.map((achievement) => (
+                              <motion.div
+                                key={achievement.id}
+                                className={`flex items-center rounded-lg border ${achievement.gradient.border} bg-gradient-to-r ${achievement.gradient.background} p-4 shadow-[0_4px_10px_rgba(139,92,246,0.15)]`}
+                                initial={{
+                                  opacity: 0,
+                                  x: achievement.id % 2 === 0 ? 20 : -20,
+                                }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{
+                                  delay: 0.3 + achievement.id * 0.1,
+                                }}
+                              >
+                                <div
+                                  className={`mr-3 rounded-full bg-gradient-to-br ${achievement.gradient.icon} p-2 shadow-lg`}
                                 >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                  />
-                                </svg>
-                              </div>
-                              <span className="font-medium text-gray-100">
-                                Dean&apos;s List
-                              </span>
-                            </motion.div>
-
-                            <motion.div
-                              className="flex items-center rounded-lg border border-blue-600/30 bg-gradient-to-r from-blue-900/40 via-indigo-900/40 to-cyan-900/40 p-4 shadow-[0_4px_10px_rgba(96,165,250,0.15)]"
-                              initial={{ opacity: 0, x: 20 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.4 }}
-                            >
-                              <div className="mr-3 rounded-full bg-gradient-to-br from-blue-600 to-cyan-600 p-2 shadow-lg">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-6 w-6 text-white"
-                                  fill="none"
-                                  viewBox="0 0 24 24"
-                                  stroke="currentColor"
-                                >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
-                                  />
-                                </svg>
-                              </div>
-                              <span className="font-medium text-gray-100">
-                                Research Award
-                              </span>
-                            </motion.div>
+                                  {ACHIEVEMENT_ICONS[achievement.icon]}
+                                </div>
+                                <span className="font-medium text-gray-100">
+                                  {achievement.title}
+                                </span>
+                              </motion.div>
+                            ))}
                           </div>
                         </div>
                       </div>

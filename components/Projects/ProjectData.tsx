@@ -99,7 +99,7 @@ const PROJECTS: Project[] = [
   },
   {
     id: 'project5',
-    title: 'summarizer tool',
+    title: 'Summarizer tool',
     description:
       'Built an app to save time and read more efficiently, Try out our summarizer tool! Our software uses natural language processing to extract the most important information from long texts and documents, giving you a concise summary',
     technologies: ['ReactJS', 'LLMs', 'Tailwind CSS'],

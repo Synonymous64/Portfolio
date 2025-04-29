@@ -106,16 +106,20 @@ const useActiveSection = (
           }
         } else {
           // Check for featured sections
-          const sectionClass = name.toLowerCase() === 'blogs' 
-            ? 'featured-blogs-section' 
-            : name.toLowerCase() === 'gallery' 
-              ? 'featured-gallery-section' 
-              : null;
-              
+          const sectionClass =
+            name.toLowerCase() === 'blogs'
+              ? 'featured-blogs-section'
+              : name.toLowerCase() === 'gallery'
+                ? 'featured-gallery-section'
+                : null;
+
           if (sectionClass) {
             const element = document.querySelector(`.${sectionClass}`);
             if (element) {
-              const sectionTop = element.getBoundingClientRect().top + window.pageYOffset - offset;
+              const sectionTop =
+                element.getBoundingClientRect().top +
+                window.pageYOffset -
+                offset;
               if (pageYOffset >= sectionTop) {
                 newActiveSection = name;
               }

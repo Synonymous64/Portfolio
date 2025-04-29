@@ -228,30 +228,30 @@ const FeaturedProjectCard: React.FC<{ project: Project; index: number }> = ({
           {/* Ambient Background Effect */}
           <div className="absolute inset-0 z-0 bg-gradient-to-br from-purple-500/20 to-violet-500/20 transition-opacity duration-300 group-hover:opacity-50"></div>
           {project.image && (
-  <motion.div
-    className="relative w-full overflow-hidden sm:h-auto lg:h-auto"
-    initial={{ scale: 1 }}
-    whileHover={{ scale: 1 }}
-  >
-    <div className="aspect-video relative">
-      <Image
-        src={project.image}
-        alt={project.title}
-        fill
-        className="object-contain transition-all duration-500 ease-out group-hover:scale-105"
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
-        quality={95}
-        priority={index < 2}
-      />
+            <motion.div
+              className="relative w-full overflow-hidden sm:h-auto lg:h-auto"
+              initial={{ scale: 1 }}
+              whileHover={{ scale: 1 }}
+            >
+              <div className="relative aspect-video">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-contain transition-all duration-500 ease-out group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
+                  quality={95}
+                  priority={index < 2}
+                />
 
-      {/* Overlay effects */}
-      <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 via-purple-900/40 to-transparent opacity-0 transition-all duration-500 ease-out group-hover:opacity-70" />
+                {/* Overlay effects */}
+                <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 via-purple-900/40 to-transparent opacity-0 transition-all duration-500 ease-out group-hover:opacity-70" />
 
-      {/* Shine effect */}
-      <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.2)_50%,transparent_75%)] opacity-0 transition-opacity duration-700 ease-out group-hover:opacity-100" />
-    </div>
-  </motion.div>
-)}
+                {/* Shine effect */}
+                <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.2)_50%,transparent_75%)] opacity-0 transition-opacity duration-700 ease-out group-hover:opacity-100" />
+              </div>
+            </motion.div>
+          )}
 
           {/* Enhanced Project Label */}
           <motion.div
