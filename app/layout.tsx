@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: 'Prajwal Urkude Portfolio & Blog',
 
   description:
-    'Prajwal Urkude is a Full-Stack Developer and creative technologist with a strong foundation in web, game, and cloud development. With hands-on expertise in React, Next.js, Unreal Engine, and Google Cloud, [Your Name] builds performant, user-focused applications and tools. Actively exploring AI, Web3, and machine learning, they combine design thinking with engineering to deliver innovative digital experiences and open-source projects.',
+    'Prajwal Urkude is a Full-Stack Developer and creative technologist with a strong foundation in web, game, and cloud development. With hands-on expertise in React, Next.js, Unreal Engine, and Google Cloud, He builds performant, user-focused applications and tools. Actively exploring AI, Web3, and machine learning, they combine design thinking with engineering to deliver innovative digital experiences and open-source projects.',
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
@@ -51,14 +51,14 @@ export const metadata: Metadata = {
     siteName: 'Prajwal Urkude',
     title: 'Prajwal Urkude Portfolio & Blog',
     description:
-      'Prajwal Urkude is a Full-Stack Developer and creative technologist with a strong foundation in web, game, and cloud development. With hands-on expertise in React, Next.js, Unreal Engine, and Google Cloud, [Your Name] builds performant, user-focused applications and tools. Actively exploring AI, Web3, and machine learning, they combine design thinking with engineering to deliver innovative digital experiences and open-source projects.',
+      'Prajwal Urkude is a Full-Stack Developer and creative technologist with a strong foundation in web, game, and cloud development. With hands-on expertise in React, Next.js, Unreal Engine, and Google Cloud, He builds performant, user-focused applications and tools. Actively exploring AI, Web3, and machine learning, they combine design thinking with engineering to deliver innovative digital experiences and open-source projects.',
   },
   twitter: {
     card: 'summary_large_image',
     images: '/images/png/preview.png',
     title: 'Prajwal Urkude Portfolio & Blog',
     description:
-      'Prajwal Urkude is a Full-Stack Developer and creative technologist with a strong foundation in web, game, and cloud development. With hands-on expertise in React, Next.js, Unreal Engine, and Google Cloud, [Your Name] builds performant, user-focused applications and tools. Actively exploring AI, Web3, and machine learning, they combine design thinking with engineering to deliver innovative digital experiences and open-source projects.',
+      'Prajwal Urkude is a Full-Stack Developer and creative technologist with a strong foundation in web, game, and cloud development. With hands-on expertise in React, Next.js, Unreal Engine, and Google Cloud, He builds performant, user-focused applications and tools. Actively exploring AI, Web3, and machine learning, they combine design thinking with engineering to deliver innovative digital experiences and open-source projects.',
   },
 };
 
