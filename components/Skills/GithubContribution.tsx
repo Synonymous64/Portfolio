@@ -14,10 +14,12 @@ function GithubContributions() {
   useEffect(() => {
     const fetchGithubData = async () => {
       try {
-        const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/github`,
-        );
-        if (response.status >= 400) {
+        const baseUrl =
+          process.env.NEXT_PUBLIC_BASE_URL ||
+          'https://prajportfolio.vercel.app';
+        const response = await axios.get(`${baseUrl}/api/github`);
+
+        if (!response.data || response.status >= 400) {
           throw new Error('Error fetching GitHub data');
         }
         setData(response.data.data);
