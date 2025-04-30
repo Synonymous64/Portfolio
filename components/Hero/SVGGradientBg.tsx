@@ -2,10 +2,15 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 
+interface Dimensions {
+  width: number;
+  height: number;
+}
+
 export default function DarkModeGradientBg() {
-  const canvasRef = useRef(null);
-  const animationFrameRef = useRef();
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const animationFrameRef = useRef<number>();
+  const [dimensions, setDimensions] = useState<Dimensions>({ width: 0, height: 0 });
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -32,10 +37,10 @@ export default function DarkModeGradientBg() {
     if (!canvasRef.current || dimensions.width === 0) return;
 
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d')!;
 
     let time = 0;
-    const speed = 0.0005; // Very slow movement
+    const speed = 0.0005;
 
     const drawGradient = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
