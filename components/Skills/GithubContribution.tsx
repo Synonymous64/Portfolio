@@ -9,7 +9,7 @@ import axios from 'axios';
 
 function GithubContributions() {
   const [data, setData] = useState<any>(null);
-  console.log('🚀 ~ GithubContributions ~ data:', data);
+  // console.log('🚀 ~ GithubContributions ~ data:', data);
 
   useEffect(() => {
     const fetchGithubData = async () => {
