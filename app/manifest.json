@@ -1,24 +1,85 @@
 {
-    "name": "0xAquaWolf Portfolio & Blog",
-    "short_name": "0xAquaWolf",
-    "icons": [
-      {
-        "src": "/android-chrome-192x192.png",
-        "sizes": "192x192",
-        "type": "image/png"
-      },
-      {
-        "src": "/android-chrome-256x256.png",
-        "sizes": "256x256",
-        "type": "image/png"
-      }
-    ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
-    "display": "standalone",
-    "start_url": "/",
-    "description": "AquaWolf is a Senior Full-Stack Software Engineer and indie hacker specializing in Web3, AI, and Machine Learning.",
-    "orientation": "any",
-    "lang": "en",
-    "categories": ["technology", "portfolio", "blog"]
+  "name": "Prajwal Urkude Portfolio & Blog",
+  "short_name": "Prajwal",
+  "description": "Prajwal Urkude is a Full-Stack Software Engineer and AI Researcher specializing in Web3, AI, and Machine Learning. Explore innovative projects, technical blog posts, and insights into emerging technologies.",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
+  "orientation": "any",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": [
+    "technology",
+    "portfolio",
+    "blog",
+    "development",
+    "artificial intelligence",
+    "web3"
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/desktop.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Desktop view of Prajwal's Portfolio"
+    },
+    {
+      "src": "/screenshots/mobile.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Mobile view of Prajwal's Portfolio"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Blog",
+      "url": "/blog",
+      "description": "Read latest articles"
+    },
+    {
+      "name": "Projects",
+      "url": "/projects",
+      "description": "View portfolio projects"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "iarc_rating_id": "",
+  "share_target": {
+    "action": "/share",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
   }
+}

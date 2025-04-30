@@ -15,10 +15,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000',
   ),
-  title: '0xAquaWolf Portfolio & Blog',
+  title: 'Prajwal Urkude Portfolio & Blog',
 
   description:
-    'AquaWolf is a Senior Full-Stack Software Engineer and indie hacker with a proven track record in building impactful, consumer-facing products that have generated over $28M in Web3 projects and $30K MRR in e-commerce. Specializing in rapid prototyping, full-stack development, UI/UX design, and emerging technologies like AI and blockchain, AquaWolf is passionately building innovative solutions and upskilling in Web3, AI, and Machine Learning while releasing quality apps to the public.',
+    'Prajwal Urkude is a Full-Stack Developer and creative technologist with a strong foundation in web, game, and cloud development. With hands-on expertise in React, Next.js, Unreal Engine, and Google Cloud, [Your Name] builds performant, user-focused applications and tools. Actively exploring AI, Web3, and machine learning, they combine design thinking with engineering to deliver innovative digital experiences and open-source projects.',
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
@@ -40,25 +40,25 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: '0xAquaWolf',
+    title: 'Prajwal Urkude',
   },
   formatDetection: {
     telephone: false,
   },
   openGraph: {
     type: 'website',
-    images: '/images/png/portfolio-preview.png',
-    siteName: '0xAquaWolf',
-    title: '0xAquaWolf Portfolio & Blog',
+    images: '/images/png/preview.png',
+    siteName: 'Prajwal Urkude',
+    title: 'Prajwal Urkude Portfolio & Blog',
     description:
-      'AquaWolf is a Senior Full-Stack Software Engineer and indie hacker with a proven track record in building impactful, consumer-facing products that have generated over $28M in Web3 projects and $30K MRR in e-commerce. Specializing in rapid prototyping, full-stack development, UI/UX design, and emerging technologies like AI and blockchain, AquaWolf is passionately building innovative solutions and upskilling in Web3, AI, and Machine Learning while releasing quality apps to the public.',
+      'Prajwal Urkude is a Full-Stack Developer and creative technologist with a strong foundation in web, game, and cloud development. With hands-on expertise in React, Next.js, Unreal Engine, and Google Cloud, [Your Name] builds performant, user-focused applications and tools. Actively exploring AI, Web3, and machine learning, they combine design thinking with engineering to deliver innovative digital experiences and open-source projects.',
   },
   twitter: {
     card: 'summary_large_image',
-    images: '/images/png/portfolio-preview.png',
-    title: '0xAquaWolf Portfolio & Blog',
+    images: '/images/png/preview.png',
+    title: 'Prajwal Urkude Portfolio & Blog',
     description:
-      'AquaWolf is a Senior Full-Stack Software Engineer and indie hacker with a proven track record in building impactful, consumer-facing products that have generated over $28M in Web3 projects and $30K MRR in e-commerce. Specializing in rapid prototyping, full-stack development, UI/UX design, and emerging technologies like AI and blockchain, AquaWolf is passionately building innovative solutions and upskilling in Web3, AI, and Machine Learning while releasing quality apps to the public.',
+      'Prajwal Urkude is a Full-Stack Developer and creative technologist with a strong foundation in web, game, and cloud development. With hands-on expertise in React, Next.js, Unreal Engine, and Google Cloud, [Your Name] builds performant, user-focused applications and tools. Actively exploring AI, Web3, and machine learning, they combine design thinking with engineering to deliver innovative digital experiences and open-source projects.',
   },
 };
 
