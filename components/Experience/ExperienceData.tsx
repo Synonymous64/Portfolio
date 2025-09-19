@@ -141,7 +141,7 @@ const educationData: EducationItem[] = [
   {
     id: 1,
     degree: 'Master of Science in Computer Science',
-    institution: 'RPTU Kaiseslautern-Landau, Germany',
+    institution: 'RPTU Kaiserslautern-Landau, Germany',
     period: '2025 - 2027 (Expected)',
     description: 'Specialization in Intelligent Systems and Software Engineering',
     achievements: [
