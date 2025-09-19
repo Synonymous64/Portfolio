@@ -10,9 +10,11 @@ import {
   FaHome,
   FaInfoCircle,
   FaCogs,
-  FaFolder,
+  FaFolderOpen,    // <-- add this
+  FaBriefcase,     // <-- add this
   FaBlog,
   FaEnvelope,
+  FaImages,        // <-- add this
   FaMedium,
   FaDev,
   FaCodepen,
@@ -63,10 +65,10 @@ const Footer = () => {
     { name: 'Home', href: '/#home', icon: FaHome },
     { name: 'About Us', href: '/#about', icon: FaInfoCircle },
     { name: 'Skills', href: '/#skills', icon: FaCogs },
-    { name: 'Projects', href: '/#projects', icon: FaFolder },
-    { name: 'Experience', href: '/#experience', icon: FaFolder },
+    { name: 'Projects', href: '/#projects', icon: FaFolderOpen }, // changed
+    { name: 'Experience', href: '/#experience', icon: FaBriefcase }, // changed
     { name: 'Blogs', href: '/posts', icon: FaBlog },
-    { name: 'Gallery', href: '/gallery', icon: FaEnvelope },
+    { name: 'Gallery', href: '/gallery', icon: FaImages }, // changed
     { name: 'Contact', href: '/#contact', icon: FaEnvelope },
   ];
 
@@ -157,55 +159,58 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          {/* Quick Links Section */}
-          <motion.div variants={childVariants} className="space-y-6">
-            <h3 className="relative text-xl font-semibold text-white">
-              <span className="absolute -left-4 top-1/2 h-8 w-1 -translate-y-1/2 rounded bg-gradient-to-b from-pink-500 to-violet-500"></span>
-              Quick Links
-            </h3>
-            <ul className="space-y-3">
-              {quickLinks.map((link, index) => (
-                <motion.li
-                  key={index}
-                  whileHover={{ x: 5 }}
-                  transition={{ type: 'spring', stiffness: 300 }}
-                >
-                  <Link
-                    href={link.href}
-                    className="group flex items-center space-x-2 text-gray-300 transition-colors hover:text-white"
+          {/* Links Section - Side by side on mobile, separate on desktop */}
+          <div className="md:col-span-1 lg:col-span-2 grid grid-cols-2 gap-8 md:grid-cols-1 lg:grid-cols-2">
+            {/* Quick Links Section */}
+            <motion.div variants={childVariants} className="space-y-6">
+              <h3 className="relative text-xl font-semibold text-white">
+                <span className="absolute -left-4 top-1/2 h-8 w-1 -translate-y-1/2 rounded bg-gradient-to-b from-pink-500 to-violet-500"></span>
+                Quick Links
+              </h3>
+              <ul className="space-y-3">
+                {quickLinks.map((link, index) => (
+                  <motion.li
+                    key={index}
+                    whileHover={{ x: 5 }}
+                    transition={{ type: 'spring', stiffness: 300 }}
                   >
-                    <link.icon className="h-4 w-4 transition-transform group-hover:scale-110" />
-                    <span>{link.name}</span>
-                  </Link>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
+                    <Link
+                      href={link.href}
+                      className="group flex items-center space-x-2 text-gray-300 transition-colors hover:text-white"
+                    >
+                      <link.icon className="h-4 w-4 transition-transform group-hover:scale-110" />
+                      <span className="text-sm sm:text-base">{link.name}</span>
+                    </Link>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
 
-          {/* Services Section */}
-          <motion.div variants={childVariants} className="space-y-6">
-            <h3 className="relative text-xl font-semibold text-white">
-              <span className="absolute -left-4 top-1/2 h-8 w-1 -translate-y-1/2 rounded bg-gradient-to-b from-pink-500 to-violet-500"></span>
-              Other Links
-            </h3>
-            <ul className="space-y-3">
-              {others.map((service, index) => (
-                <motion.li
-                  key={index}
-                  whileHover={{ x: 5 }}
-                  transition={{ type: 'spring', stiffness: 300 }}
-                >
-                  <Link
-                    href={service.href}
-                    className="group flex items-center space-x-2 text-gray-300 transition-colors hover:text-white"
+            {/* Services Section */}
+            <motion.div variants={childVariants} className="space-y-6">
+              <h3 className="relative text-xl font-semibold text-white">
+                <span className="absolute -left-4 top-1/2 h-8 w-1 -translate-y-1/2 rounded bg-gradient-to-b from-pink-500 to-violet-500"></span>
+                Other Links
+              </h3>
+              <ul className="space-y-3">
+                {others.map((service, index) => (
+                  <motion.li
+                    key={index}
+                    whileHover={{ x: 5 }}
+                    transition={{ type: 'spring', stiffness: 300 }}
                   >
-                    <service.icon className="h-4 w-4 transition-transform group-hover:scale-110" />
-                    <span>{service.name}</span>
-                  </Link>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
+                    <Link
+                      href={service.href}
+                      className="group flex items-center space-x-2 text-gray-300 transition-colors hover:text-white"
+                    >
+                      <service.icon className="h-4 w-4 transition-transform group-hover:scale-110" />
+                      <span className="text-sm sm:text-base">{service.name}</span>
+                    </Link>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
         </motion.div>
 
         {/* Copyright Section */}

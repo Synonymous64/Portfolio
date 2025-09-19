@@ -141,30 +141,30 @@ const educationData: EducationItem[] = [
   {
     id: 1,
     degree: 'Master of Science in Computer Science',
-    institution: 'Tech University',
-    period: '2018 - 2020',
-    description: 'Specialized in Web Development and User Interface Design',
+    institution: 'RPTU Kaiseslautern-Landau, Germany',
+    period: '2025 - 2027 (Expected)',
+    description: 'Specialization in Intelligent Systems and Software Engineering',
     achievements: [
-      {
-        id: 1,
-        title: "Dean's List",
-        icon: 'award',
-        gradient: {
-          border: 'border-violet-600/30',
-          background: 'from-indigo-900/40 via-violet-900/40 to-fuchsia-900/40',
-          icon: 'from-violet-600 to-fuchsia-600',
-        },
-      },
-      {
-        id: 2,
-        title: 'Research Award',
-        icon: 'research',
-        gradient: {
-          border: 'border-blue-600/30',
-          background: 'from-blue-900/40 via-indigo-900/40 to-cyan-900/40',
-          icon: 'from-blue-600 to-cyan-600',
-        },
-      },
+      // {
+      //   id: 1,
+      //   title: "Dean's List",
+      //   icon: 'award',
+      //   gradient: {
+      //     border: 'border-violet-600/30',
+      //     background: 'from-indigo-900/40 via-violet-900/40 to-fuchsia-900/40',
+      //     icon: 'from-violet-600 to-fuchsia-600',
+      //   },
+      // },
+      // {
+      //   id: 2,
+      //   title: 'Research Award',
+      //   icon: 'research',
+      //   gradient: {
+      //     border: 'border-blue-600/30',
+      //     background: 'from-blue-900/40 via-indigo-900/40 to-cyan-900/40',
+      //     icon: 'from-blue-600 to-cyan-600',
+      //   },
+      // },
     ],
   },
   {
