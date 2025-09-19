@@ -571,11 +571,11 @@ const HobbyPill = ({
 );
 
 const hobbies = [
-  {
-    icon: <Camera className="text-pink-400" />,
-    name: 'Photography',
-    emoji: '📸',
-  },
+  // {
+  //   icon: <Camera className="text-pink-400" />,
+  //   name: 'Photography',
+  //   emoji: '📸',
+  // },
   {
     icon: <Gamepad2 className="text-green-400" />,
     name: 'Gaming',
@@ -601,46 +601,46 @@ const hobbies = [
     name: 'Reading',
     emoji: '📚',
   },
-  {
-    icon: <Palette className="text-orange-400" />,
-    name: 'Art',
-    emoji: '🎨',
-  },
+  // {
+  //   icon: <Palette className="text-orange-400" />,
+  //   name: 'Art',
+  //   emoji: '🎨',
+  // },
   {
     icon: <Plane className="text-sky-400" />,
     name: 'Travel',
     emoji: '✈️',
   },
-  {
-    icon: <Coffee className="text-amber-400" />,
-    name: 'Café Hopping',
-    emoji: '☕',
-  },
+  // {
+  //   icon: <Coffee className="text-amber-400" />,
+  //   name: 'Café Hopping',
+  //   emoji: '☕',
+  // },
   {
     icon: <Utensils className="text-red-500" />,
     name: 'Cooking',
     emoji: '👨‍🍳',
   },
 
-  {
-    icon: <Mic2 className="text-rose-400" />,
-    name: 'Podcasting',
-    emoji: '🎙️',
-  },
-  {
-    icon: <Brain className="text-emerald-400" />,
-    name: 'Philosophy',
-    emoji: '🤔',
-  },
+  // {
+  //   icon: <Mic2 className="text-rose-400" />,
+  //   name: 'Podcasting',
+  //   emoji: '🎙️',
+  // },
+  // {
+  //   icon: <Brain className="text-emerald-400" />,
+  //   name: 'Philosophy',
+  //   emoji: '🤔',
+  // },
 
-  {
-    icon: <Dog className="text-amber-500" />,
-    name: 'Pet Care',
-    emoji: '🐕',
-  },
-  {
-    icon: <HeartHandshake className="text-red-400" />,
-    name: 'Volunteering',
-    emoji: '🤝',
-  },
+  // {
+  //   icon: <Dog className="text-amber-500" />,
+  //   name: 'Pet Care',
+  //   emoji: '🐕',
+  // },
+  // {
+  //   icon: <HeartHandshake className="text-red-400" />,
+  //   name: 'Volunteering',
+  //   emoji: '🤝',
+  // },
 ];
