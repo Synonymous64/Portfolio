@@ -305,7 +305,7 @@ export default function Contact({ searchParams = {} }: ContactProps) {
                         Location
                       </h3>
                       <p className="text-xs text-gray-300 sm:text-sm">
-                        Pune, Maharashtra, India
+                        Kaiserslautern, Germany
                       </p>
                     </div>
                   </div>
