@@ -261,10 +261,10 @@ export default function Contact({ searchParams = {} }: ContactProps) {
                         Phone
                       </h3>
                       <a
-                        href="tel:+919765980320"
+                        href="tel:+4915510833633"
                         className="text-xs text-gray-300 transition-colors hover:text-purple-400 sm:text-sm"
                       >
-                        +91 976 598 0320
+                        +49 155 10833633
                       </a>
                     </div>
                   </div>
