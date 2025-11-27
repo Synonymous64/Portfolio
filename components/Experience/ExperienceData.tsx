@@ -171,7 +171,7 @@ const educationData: EducationItem[] = [
     id: 2,
     degree: 'Bachelor of Technology in Information Technology',
     institution: 'Rashtrasant Tukadoji Maharaj Nagpur University (RTMNU)',
-    period: '2014 - 2018',
+    period: '2021 - 2024',
     description: 'Graduated with honors, participated in coding competitions',
     achievements: [
       {
