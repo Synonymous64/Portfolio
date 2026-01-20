@@ -16,7 +16,7 @@ import { AnimatePresence } from 'framer-motion';
 import Leetcode from '@/public/images/svg/leetcode.svg';
 import { SparklesText } from '../ui/SparkleText';
 
-const CV_URL = '/Curriculum_vitae_Prajwal_Urkude.pdf';
+const CV_URL = '/Prajwal_Urkude_Curriculum_Vitae.pdf';
 
 export default function HeroCTA() {
   const professionalTitles = [
