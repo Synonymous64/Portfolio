@@ -31,6 +31,17 @@ interface EducationItem {
 const experienceData: ExperienceItem[] = [
   {
     id: 1,
+    title: 'IT Content Migration- Working Student',
+    company: 'Contabo GmbH',
+    period: 'January 2026 - Present',
+    description: [
+      'Executed enterprise CMS migration from Contentful to Payload CMS for 50,000+ users across 15+ markets with 99.8% data integrity.',
+      'Built modular subdomain system enabling dynamic provisioning of 20+ localized microsites, reducing deployment time by 70%.',
+    ],
+    skills: ['Contentful', 'Payload', 'CMS', 'Data Migration', 'Data Management'],
+  },
+  {
+    id: 2,
     title: 'OpenSource Contribution and Campus Ambassador',
     company: 'GirlScript Summer of Code',
     period: 'April 2024 - Present',
@@ -64,7 +75,7 @@ const experienceData: ExperienceItem[] = [
     // ]
   },
   {
-    id: 2,
+    id: 3,
     title: 'Java Developer',
     company: 'LetsGrowMore',
     period: 'August - October 2023',
@@ -88,7 +99,7 @@ const experienceData: ExperienceItem[] = [
     // ]
   },
   {
-    id: 3,
+    id: 4,
     title: 'Web Developer',
     company: 'Oasis Infobyte',
     period: 'July - August 2023',
@@ -112,7 +123,7 @@ const experienceData: ExperienceItem[] = [
     // ]
   },
   {
-    id: 4,
+    id: 5,
     title: 'Web and Salesforce Developer',
     company: 'IT-NetworkZ Infosystems',
     period: 'February 2022 - April 2022',
