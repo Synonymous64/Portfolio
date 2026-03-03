@@ -6,6 +6,7 @@ import { WagmiProvider, createConfig, http } from 'wagmi';
 import { mainnet, polygon, optimism, arbitrum, base } from 'wagmi/chains';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ThemeProvider } from 'next-themes';
+import { LanguageProvider } from '@/app/providers/LanguageProvider';
 
 const queryClient = new QueryClient();
 
@@ -29,20 +30,22 @@ export function Providers({ children }: { children: React.ReactNode }) {
       enableSystem
       disableTransitionOnChange
     >
-      <WagmiProvider config={config}>
-        <QueryClientProvider client={queryClient}>
-          <RainbowKitProvider
-            theme={darkTheme({
-              accentColor: 'white',
-              accentColorForeground: 'black',
-              borderRadius: 'large',
-              overlayBlur: 'large',
-            })}
-          >
-            {children}
-          </RainbowKitProvider>
-        </QueryClientProvider>
-      </WagmiProvider>
+      <LanguageProvider>
+        <WagmiProvider config={config}>
+          <QueryClientProvider client={queryClient}>
+            <RainbowKitProvider
+              theme={darkTheme({
+                accentColor: 'white',
+                accentColorForeground: 'black',
+                borderRadius: 'large',
+                overlayBlur: 'large',
+              })}
+            >
+              {children}
+            </RainbowKitProvider>
+          </QueryClientProvider>
+        </WagmiProvider>
+      </LanguageProvider>
     </ThemeProvider>
   );
 }
