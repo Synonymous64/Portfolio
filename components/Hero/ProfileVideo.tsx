@@ -3,9 +3,6 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 
-// Immersive profile video container with animated rings, code symbols,
-// pulsing backlight, and dynamic gradients. Designed to feel like a
-// high-tech terminal surrounding your personal animation.
 
 export default function ProfileVideo() {
   const FloatingSymbol = ({
