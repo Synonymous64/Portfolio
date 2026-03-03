@@ -60,7 +60,7 @@ const Experience: React.FC = () => {
   return (
     <div
       id="experience"
-      className="relative min-h-screen bg-gradient-to-br md:px-8"
+      className="relative bg-gradient-to-br md:px-8"
     >
       {/* Enhanced background with multiple gradient blobs */}
       <div className="absolute inset-0 overflow-hidden">
