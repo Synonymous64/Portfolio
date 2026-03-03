@@ -212,7 +212,7 @@ export const LogoList = ({ startIndex = 0 }: { startIndex?: number }) => (
 
 export default function LogoCloud() {
   return (
-    <div className="lg:mt-22 relative z-40 mx-auto mb-[-75px] mt-[50px] flex flex-col gap-3 text-white lg:mb-0 lg:max-w-[1080px] lg:gap-6">
+    <div className="lg:mt-22 relative z-40 mx-auto mb-1 mt-[50px] flex flex-col gap-3 text-white lg:mb-7 lg:max-w-[1080px] lg:gap-6">
       <h2 className="mx-auto mb-3 w-full px-8 text-center text-sm lg:mb-0 lg:max-w-none lg:px-0 lg:text-xl">
         Leveraging state-of-the-art technologies
       </h2>
@@ -243,7 +243,7 @@ export default function LogoCloud() {
         </div>
       </div>
 
-      <p className="mx-auto w-full max-w-[250px] text-center text-sm opacity-60 lg:max-w-none">
+      <p className="mx-auto w-full max-w-[250px] pt-8 pb-4 text-center text-sm opacity-60 lg:pt-0 lg:pb-0 lg:max-w-none">
         Staying ahead of the curve and surfing the waves of innovation
       </p>
     </div>

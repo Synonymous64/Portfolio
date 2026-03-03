@@ -1,7 +1,15 @@
+"use client";
+
 import React from "react";
 import QuoteCircles from "../../public/images/svg/2nd-quote-circles.svg";
 import QuoteBGBlur from "../../public/images/svg/2nd-quote-bg-blur.svg";
 import Image from "next/image";
+
+const permanentQuote = {
+  text: "Your code is a conversation with future developers.",
+  author: "Jeff Atwood",
+  title: "Developer's Mindset",
+};
 
 export default function SecondQuote() {
   return (
@@ -9,10 +17,10 @@ export default function SecondQuote() {
       <div className="flex flex-col items-center justify-center">
         <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-center text-white">
           <div className="bg-gradient-to-b from-white to-[#CC53C7] bg-clip-text text-2xl font-medium text-transparent lg:text-6xl">
-            Simplicity is the ultimate sophistication.
+            {permanentQuote.text}
           </div>
           <div className="mt-2 text-lg font-extralight text-white/50 lg:text-2xl">
-            - Leonardo Da Vinci
+            - {permanentQuote.author} {permanentQuote.title && <span className="block text-sm">{permanentQuote.title}</span>}
           </div>
         </div>
         <div className="z-5 relative">
