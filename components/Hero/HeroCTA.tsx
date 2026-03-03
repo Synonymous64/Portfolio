@@ -5,8 +5,7 @@ import GithubLogo from '@/public/images/svg/Github-Logo.svg';
 import InstagramLogo from '@/public/images/svg/Instagram-Logo.svg';
 import LinkedinLogo from '@/public/images/svg/LinkedIn-Logo.svg';
 import TwitterLogo from '@/public/images/svg/X-Twitter-Logo.svg';
-import MoonImage from '@/public/images/png/moon.png';
-import Sample from '@/public/images/png/sample.png';
+import ProfileVideo from './ProfileVideo';
 
 import { motion } from 'framer-motion';
 import ProjectButton from '../ui/ProjectButton';
@@ -194,73 +193,22 @@ export default function HeroCTA() {
         </div>
 
         <motion.div
-          className="relative h-64 w-full md:h-[500px] md:w-1/2"
+          className="relative h-64 w-full md:h-[500px] md:w-1/2 flex items-center justify-center"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.6 }}
-          whileHover={{ scale: 1.05 }}
         >
-          {/* Moon container with improved blending */}
-          <motion.div
-            className="moon-container relative h-full w-full"
-            whileHover={{ scale: 1.05 }}
-            animate={{ rotate: [0, 2, 0] }}
-            transition={{
-              rotate: {
-                duration: 6,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              },
-            }}
-          >
-            <motion.div
-              className="moon-glow absolute inset-0"
-              whileHover={{ scale: 1.1 }}
-              animate={{
-                scale: [1, 1.05, 1],
-                rotate: [0, -1, 0],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-            >
-              {/* Moon image with improved blending */}
-              <div className="relative h-full w-full">
-                <Image
-                  src={MoonImage}
-                  alt="Moon"
-                  fill
-                  className="object-contain opacity-90 mix-blend-screen transition-all duration-300"
-                  priority
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
+          {/* decorative ring and glow around video */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="ring-container relative h-full w-full flex items-center justify-center">
+              <div className="absolute inset-0 rounded-full border-2 border-gradient animate-spin-slow"></div>
+              <div className="absolute inset-6 rounded-full border-2 border-gradient-alt animate-spin-reverse"></div>
+            </div>
+          </div>
 
-                {/* Ambient glow effect */}
-                <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-violet-500/5 via-fuchsia-500/5 to-indigo-500/5 blur-3xl" />
-              </div>
-
-              {/* Enhanced cosmic particles */}
-              <div className="absolute inset-0">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-violet-500/10 via-transparent to-transparent opacity-70 mix-blend-screen blur-xl" />
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Animated star field */}
-          <div className="absolute inset-0 overflow-hidden">
-            {[...Array(20)].map((_, i) => (
-              <div
-                key={i}
-                className={`animate-twinkle absolute h-[2px] w-[2px] rounded-full bg-white/70`}
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 3}s`,
-                }}
-              />
-            ))}
+          {/* main profile animation */}
+          <div className="relative h-full w-full rounded-3xl overflow-hidden shadow-2xl">
+            <ProfileVideo />
           </div>
         </motion.div>
       </div>

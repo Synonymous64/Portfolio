@@ -72,7 +72,7 @@ const ResearchPapers: React.FC = () => {
   });
 
   return (
-    <div className="min-h-screen w-full px-4 py-8 md:px-8">
+    <div className="w-full px-4 py-8 md:px-8">
       <div className="mx-auto max-w-6xl">
         <div className="mb-8 flex flex-col gap-6">
           <h2 className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-3xl font-bold text-transparent">

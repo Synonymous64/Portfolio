@@ -61,7 +61,7 @@ const ProjectSection: React.FC = () => {
   };
 
   return (
-    <section className="relative bg-gradient-to-br py-20" id="projects">
+    <section className="relative bg-gradient-to-br py-12" id="projects">
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="mb-16 text-center"

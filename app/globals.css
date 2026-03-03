@@ -241,13 +241,6 @@ html {
   animation: wave 2.5s infinite;
 }
 
-.moon-container {
-  animation: float 6s ease-in-out infinite;
-}
-
-.moon-glow {
-  animation: glow 4s ease-in-out infinite;
-}
 
 .three-scene {
   @apply relative h-full w-full;

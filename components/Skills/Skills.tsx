@@ -11,7 +11,7 @@ const Skills = () => {
   return (
     <div
       id="skills"
-      className="mx-auto space-y-12 bg-gradient-to-br mt-5"
+      className="mx-auto space-y-8 bg-gradient-to-br mt-5 mb-8"
     >
       <Tools />
       <GithubContributions />
